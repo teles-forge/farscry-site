@@ -55,7 +55,7 @@ Options
 | Flag | Default | Description |
 |---|---|---|
 | `--mcp` | required | Enable MCP server mode |
-| `--port <n>` | 3333 | Port to listen on |
+| `--port <n>` | unix socket | TCP port (default: unix socket at `~/.farscry/mcp.sock`) |
 
 Stopping the server
 
