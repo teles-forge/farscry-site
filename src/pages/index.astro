@@ -936,31 +936,43 @@
     .install-methods {
       border: 1px solid var(--border);
       border-radius: 10px; overflow: hidden;
-      max-width: 580px;
       background: var(--bg-code);
       margin-bottom: 1.25rem;
     }
     .install-method {
       display: flex; align-items: center;
-      padding: 0.75rem 1.25rem;
+      padding: 0.8125rem 1.25rem;
       border-bottom: 1px solid var(--border-soft);
       gap: 1.5rem; font-family: var(--mono);
     }
     .install-method:last-child { border-bottom: none; }
+    .install-method:hover { background: rgba(255,255,255,0.02); }
+    .install-method:hover .im-copy { opacity: 1; }
     .im-label {
       color: var(--text-dim); font-size: 0.6875rem;
-      width: 5.25rem; flex-shrink: 0;
+      width: 5.5rem; flex-shrink: 0;
       letter-spacing: 0.06em; text-transform: uppercase;
     }
-    .im-cmd { color: var(--text); font-size: 0.875rem; font-weight: 500; }
+    .im-cmd { color: var(--text); font-size: 0.9rem; font-weight: 500; flex: 1; }
+    .im-copy {
+      opacity: 0; flex-shrink: 0;
+      padding: 0.2rem 0.5rem;
+      font-size: 0.6875rem; font-family: var(--mono);
+      color: var(--text-dim);
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 4px; cursor: pointer;
+      transition: opacity 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .im-copy:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+    .im-copy.copied { color: var(--success); border-color: rgba(34,197,94,0.35); opacity: 1; }
     .install-setup {
       display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
-      max-width: 580px;
       background: var(--bg-code); border: 1px solid var(--border);
-      border-radius: 10px; padding: 0.875rem 1.25rem;
+      border-radius: 10px; padding: 0.9375rem 1.25rem;
       margin-bottom: 1rem;
     }
-    .install-setup-cmd { font-family: var(--mono); }
+    .install-setup-cmd { font-family: var(--mono); flex: 1; }
     .install-prompt { color: var(--text-dim); margin-right: 0.5rem; user-select: none; }
     .install-cmd-text { color: var(--text); font-size: 0.9375rem; font-weight: 500; }
     .install-setup-note { font-size: 0.875rem; color: var(--text-dim); }
@@ -1356,22 +1368,27 @@
     <div class="install-method">
       <span class="im-label">npm</span>
       <span class="im-cmd">npm install -g farscry</span>
+      <button class="im-copy" aria-label="Copy command">copy</button>
     </div>
     <div class="install-method">
       <span class="im-label">pip</span>
       <span class="im-cmd">pip install farscry</span>
+      <button class="im-copy" aria-label="Copy command">copy</button>
     </div>
     <div class="install-method">
       <span class="im-label">homebrew</span>
       <span class="im-cmd">brew install teles-forge/tap/farscry</span>
+      <button class="im-copy" aria-label="Copy command">copy</button>
     </div>
     <div class="install-method">
       <span class="im-label">cargo</span>
       <span class="im-cmd">cargo install farscry</span>
+      <button class="im-copy" aria-label="Copy command">copy</button>
     </div>
     <div class="install-method">
       <span class="im-label">curl</span>
       <span class="im-cmd">curl -fsSL https://farscry.dev/install | sh</span>
+      <button class="im-copy" aria-label="Copy command">copy</button>
     </div>
   </div>
 
@@ -1555,6 +1572,28 @@
       r.classList.add('in-view');
     });
   }
+
+  /* ── Copy buttons on install commands ── */
+  document.querySelectorAll('.im-copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var cmd = btn.closest('.install-method').querySelector('.im-cmd').textContent.trim();
+      navigator.clipboard.writeText(cmd).then(function () {
+        btn.textContent = 'copied';
+        btn.classList.add('copied');
+        setTimeout(function () {
+          btn.textContent = 'copy';
+          btn.classList.remove('copied');
+        }, 1600);
+      }).catch(function () {
+        /* fallback: select the text */
+        var el = btn.closest('.install-method').querySelector('.im-cmd');
+        var range = document.createRange();
+        range.selectNodeContents(el);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+      });
+    });
+  });
 })();
 </script>
 
