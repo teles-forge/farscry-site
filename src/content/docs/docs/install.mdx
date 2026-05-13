@@ -1,0 +1,105 @@
+---
+title: Installation
+description: Install farscry on any platform. No API key required.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+farscry ships as a single ~8MB binary. The npm and pip wrappers download the correct binary for your platform on first install. Models (~12MB for English) are downloaded to `~/.farscry/models/` on first run - fully offline after that.
+
+Install
+
+<Tabs syncKey="pkg">
+  <TabItem label="npm">
+  ```bash
+  npm install -g farscry
+  ```
+  </TabItem>
+  <TabItem label="pip">
+  ```bash
+  pip install farscry
+  ```
+  </TabItem>
+  <TabItem label="Homebrew">
+  ```bash
+  brew install teles-forge/farscry/farscry
+  ```
+  </TabItem>
+  <TabItem label="curl">
+  ```bash
+  curl -fsSL https://farscry.dev/install | sh
+  ```
+  </TabItem>
+</Tabs>
+
+Supported platforms
+
+| Platform | Binary |
+|---|---|
+| macOS M1/M2/M3/M4 | `farscry-aarch64-apple-darwin` |
+| macOS Intel | `farscry-x86_64-apple-darwin` |
+| Linux x86_64 | `farscry-x86_64-unknown-linux-gnu` |
+| Windows x86_64 | `farscry-x86_64-pc-windows-msvc` |
+
+Verify installation
+
+```bash
+farscry --version
+farscry 0.1.0
+```
+
+First run
+
+On first run, farscry downloads OCR models to `~/.farscry/models/` (~12MB for English: det 4.6MB + rec 7.5MB). Subsequent runs use cached models - no network call.
+
+```bash
+farscry screenshot.png
+[first run] Downloading models to ~/.farscry/models/...
+vasp_version: 1.0
+...
+```
+
+Additional languages
+
+English is built in. Additional languages are downloaded on demand:
+
+<Tabs syncKey="pkg">
+  <TabItem label="npm">
+  ```bash
+  farscry --install-lang por    # Portuguese
+  farscry --install-lang rus    # Russian
+  farscry --install-lang chi_sim # Chinese Simplified
+  farscry --install-lang jpn    # Japanese
+  ```
+  </TabItem>
+  <TabItem label="pip">
+  ```bash
+  farscry --install-lang por    # Portuguese
+  farscry --install-lang rus    # Russian
+  farscry --install-lang chi_sim # Chinese Simplified
+  farscry --install-lang jpn    # Japanese
+  ```
+  </TabItem>
+  <TabItem label="Homebrew">
+  ```bash
+  farscry --install-lang por    # Portuguese
+  farscry --install-lang rus    # Russian
+  farscry --install-lang chi_sim # Chinese Simplified
+  farscry --install-lang jpn    # Japanese
+  ```
+  </TabItem>
+  <TabItem label="curl">
+  ```bash
+  farscry --install-lang por    # Portuguese
+  farscry --install-lang rus    # Russian
+  farscry --install-lang chi_sim # Chinese Simplified
+  farscry --install-lang jpn    # Japanese
+  ```
+  </TabItem>
+</Tabs>
+
+See [Language Management](/docs/cli/install-lang) for the full reference.
+
+Security note
+
+Model downloads use HTTPS with SHA256 verification. The binary never contacts any external API during image processing - it is fully offline after the initial model download.

@@ -1,0 +1,127 @@
+---
+title: Quick Start
+description: Extract structured context from a screenshot in 30 seconds.
+---
+
+import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+
+<Steps>
+
+1. **Install farscry**
+
+   <Tabs syncKey="pkg">
+     <TabItem label="npm">
+     ```bash
+     npm install -g farscry
+     ```
+     </TabItem>
+     <TabItem label="pip">
+     ```bash
+     pip install farscry
+     ```
+     </TabItem>
+     <TabItem label="curl">
+     ```bash
+     curl -fsSL https://farscry.dev/install | sh
+     ```
+     </TabItem>
+   </Tabs>
+
+2. **Extract from a screenshot**
+
+   ```bash
+   farscry screenshot.png
+   ```
+
+   Output:
+
+   ```
+   vasp_version: 1.0
+   schema_version: 1
+   state_id: phash:a3f7c2b1d8e4f09c
+   delta_from: null
+   screen_type: config
+   confidence: high
+   lang: eng
+   workflow_context: "Payment settings form - Save Changes button available"
+
+   ui_tree:
+     heading  "Payment Settings"             (20, 20)
+     label    "Max Value"                    (20, 120)
+     input    value="1500"                   (200, 120)  editable: true
+     badge    "Active"                       (200, 160)  state: success
+     button   "Save Changes"                 (400, 300)  enabled: true
+
+   affordances:
+     - click: "Save Changes"   at (400, 300)  enabled: true
+     - type:  input "Max Value" at (200, 120)  current: "1500"
+   ```
+
+3. **Diff two screenshots**
+
+   ```bash
+   farscry diff before.png after.png
+   ```
+
+   Output:
+
+   ```
+   vasp_version: 1.0
+   diff_from: phash:8f4a2c3d...
+   diff_to:   phash:3d9b1e7a...
+
+   delta:
+     appeared:
+       - error_banner: "Payment failed - card declined"
+       - button: "Retry" at (300, 420) enabled: true
+     changed:
+       - button: "Submit" text: "Submit" -> "Processing..." enabled: true -> false
+     removed:
+       - spinner at (450, 200)
+     unchanged:
+       - form_fields: [name, card, amount]
+   ```
+
+4. **Pipe to an automation command**
+
+   ```bash
+   farscry screenshot.png | your-runner "fix this"
+   ```
+
+   farscry outputs to stdout. Pipe anywhere.
+
+</Steps>
+
+Common flags
+
+| Flag | Description |
+|---|---|
+| `--json` | JSON output instead of VASP |
+| `--affordances` | Show only interactive elements |
+| `--context` | One-line `workflow_context` summary |
+| `--lang por` | Explicit language |
+| `-v` | Verbose (processing steps) |
+| `--debug` | Full debug output |
+
+Limitations in v0.1.0
+
+:::caution
+farscry is optimized for developer tool screenshots - terminals, config panels, web consoles, IDE output. Some use cases work less well.
+:::
+
+| Scenario | Status | Notes |
+|---|---|---|
+| Text-heavy UI (terminal, config, forms) |  Works well | Core use case, 89%+ accuracy |
+| Icon-only toolbars (VS Code sidepanel) |  Partial | Buttons without text labels are missed |
+| Charts, graphs, images | No Not supported | OCR extracts no structured data |
+| PDFs | No Not supported | Convert first: `pdftoppm file.pdf page && farscry page-1.png` |
+| Animated GIFs |  First frame only | Full animation support in v0.4.0 |
+| `--from-clipboard` on Linux |  Requires `xclip` or `wl-clipboard` | Install with `apt install xclip` |
+| Windows |  Untested in v0.1.0 | Binary ships, not CI-validated yet |
+
+Next steps
+
+- [CLI Reference - extract](/docs/cli/extract)
+- [CLI Reference - diff](/docs/cli/diff)
+- [MCP Server](/docs/mcp) - keep OCR engines warm, integrate with MCP-compatible workflows
+- [VASP Format](/docs/vasp/overview) - understand the output schema
