@@ -31,7 +31,7 @@ Spring Boot integration
 ```java
 public String enrichWithVasp(String imagePath, String originalMessage) {
     ProcessBuilder pb = new ProcessBuilder(
-        "farscry", imagePath, "--affordances"
+        "farscry", "extract", imagePath, "--affordances"
     );
     pb.redirectErrorStream(false);
 
@@ -71,11 +71,14 @@ Customer message: "My payment isn't working, see screenshot"
 vasp_version: 1.0
 screen_type: error
 confidence: high
-workflow_context: "Payment error - card declined, retry available"
-error_message: "Payment failed - card declined"
-error_code: "ERR_402"
-component: "Checkout"
-suggested_action: "Retry with a different card"
+agent_context: "Payment error - card declined, retry available"
+
+ui_tree:
+  [top-center]    error   "Payment failed - card declined"
+  [middle-center] label   "ERR_402"
+  [bottom-center] button  "Retry"  enabled: true
+  [bottom-right]  button  "Back"   enabled: true
+
 affordances:
   - click: "Retry" enabled: true
   - click: "Back"  enabled: true
@@ -97,12 +100,13 @@ farscry's `conversation` screen type handles chat screenshots:
 
 ```
 screen_type: conversation
-platform: whatsapp
-messages:
-  support  | "How can I help you today?"
-  customer | "My kiosk is not working"
-  support  | "What error are you seeing?"
-  customer | "Screen goes black with code 503"
+agent_context: "Support conversation - customer reporting kiosk error 503"
+
+ui_tree:
+  [top-left]    label "How can I help you today?"
+  [middle-left] label "My kiosk is not working"
+  [middle-left] label "What error are you seeing?"
+  [bottom-left] label "Screen goes black with code 503"
 ```
 
 
@@ -113,7 +117,7 @@ import subprocess
 
 def enrich_with_vasp(image_path: str, message: str) -> str:
     result = subprocess.run(
-        ['farscry', image_path, '--affordances'],
+        ['farscry', 'extract', image_path, '--affordances'],
         capture_output=True,
         text=True,
         timeout=5
@@ -134,12 +138,12 @@ Verify
 farscry --version
 
 Models download on first run (~12MB)
-farscry --install-lang eng
+farscry install-lang eng
 ```
 
 farscry is a single self-contained binary with no runtime dependencies. Add it to your Docker image:
 
 ```dockerfile
 RUN curl -fsSL https://farscry.dev/install | sh
-RUN farscry --install-lang eng  # pre-warm models
+RUN farscry install-lang eng  # pre-warm models
 ```
