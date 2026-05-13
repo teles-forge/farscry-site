@@ -52,7 +52,7 @@ Options
 | `--json` | false | Output JSON instead of VASP |
 | `-o <file>` | stdout | Write output to file |
 | `--affordances` | false | Output only interactive elements |
-| `--context` | false | Output only the one-line `workflow_context` |
+| `--context` | false | Output only the one-line `agent_context` summary |
 | `--text-only` | false | Suppress image forwarding to workflow |
 | `--lang <code>` | auto | Force language (e.g. `eng`, `por`, `eng+por`) |
 | `--max-size <n>mb` | 10mb | Override 10MB input size limit |
@@ -71,7 +71,7 @@ delta_from: null
 screen_type: error|config|terminal|conversation|ui|unknown
 confidence: high|medium|low|none
 lang: eng
-workflow_context: "<one-line summary>"
+agent_context: "<one-line summary>"
 
 ui_tree:
   ...
