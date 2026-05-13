@@ -209,6 +209,51 @@ Supports multiple images via `image_paths` parameter.
 PNG, JPEG, GIF, WEBP, TIFF — from clipboard, file, or stdin.
 From clipboard: Cmd+Shift+4, Shottr, or Cmd+C on an image file in Finder.
 
+## Smart paste — Cmd+V becomes image-aware
+
+The fastest workflow: configure your terminal so Cmd+V automatically runs
+farscry when the clipboard contains an image.
+
+Run `farscry setup` and choose "Configure smart paste" when prompted.
+
+farscry creates `~/.farscry/smart-paste.sh` and shows the key binding
+instructions for your terminal:
+
+**macOS — iTerm2:**
+```
+Preferences → Keys → Key Bindings → +
+Shortcut: Cmd+V
+Action: Run Command
+Command: ~/.farscry/smart-paste.sh
+```
+
+**macOS — Warp:**
+```
+Settings → Features → Custom Key Bindings
+Key: Cmd+V
+Action: Run Command: ~/.farscry/smart-paste.sh
+```
+
+**Linux — Kitty** (`~/.config/kitty/kitty.conf`):
+```
+map ctrl+v launch --stdin-source=@last_cmd_output ~/.farscry/smart-paste.sh
+```
+
+**Linux — Gnome Terminal** (add to `~/.bashrc`):
+```bash
+bind -x '"\C-v": ~/.farscry/smart-paste.sh'
+```
+
+**Windows Terminal:**
+```
+Settings → Actions → Add new
+Command: wt.exe new-tab powershell -Command ~/.farscry/smart-paste.ps1
+Keys: ctrl+v
+```
+
+After setup: take any screenshot, press Cmd+V in your terminal, farscry
+detects the image, sends VASP context to your configured agent. Done.
+
 ## Common flags
 
 | Flag | Description |

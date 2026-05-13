@@ -1266,8 +1266,8 @@
 
 
 <section id="modes">
-  <h2>One binary. Three ways to use it.</h2>
-  <p class="section-sub">Runs local for all three. No server, no GPU, no account.</p>
+  <h2>One binary. Four ways to use it.</h2>
+  <p class="section-sub">Runs local for all four. No server, no GPU, no account.</p>
 
   
   <div class="mode-primary">
@@ -1347,16 +1347,28 @@
   </div>
 
   
-  <div class="mode-lone">
+  <div class="mode-pair">
     <div class="mode-secondary">
       <span class="mode-tag">mode 3: pipe</span>
       <span class="mode-secondary-title">Cmd+Shift+4, pipe, done</span>
       <p>Capture a region with your system shortcut. Pipe straight to your agent. Zero files. Zero friction.</p>
-      <div class="card-code"># Add once:
-echo "alias ffix='farscry --from-clipboard | claude \"fix this\"'" >> ~/.zshrc
+      <div class="card-code"># After farscry setup: smart paste configured
+# Screenshot -> Cmd+V -> done
 
-# Then forever:
-ffix</div>
+# Or with alias:
+fp</div>
+    </div>
+
+    <div class="mode-secondary">
+      <span class="mode-tag">mode 4: smart paste</span>
+      <span class="mode-secondary-title">Cmd+V becomes image-aware</span>
+      <p>Cmd+V auto-detects images. No command. No alias. Just paste.</p>
+      <div class="card-code">farscry setup
+# -> configures ffix alias for your agent
+# -> asks: configure smart Cmd+V? (y/N)
+# -> creates ~/.farscry/smart-paste.sh
+# -> shows key binding for your terminal</div>
+      <p class="mode-note">iTerm2 &middot; Warp &middot; Kitty &middot; Gnome Terminal &middot; Windows Terminal</p>
     </div>
   </div>
 </section>
