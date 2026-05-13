@@ -114,7 +114,7 @@ import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
 
 ## Zero-friction workflow
 
-The fastest way to use farscry — one command, every time.
+The fastest way to use farscry. One command, every time.
 
 ```bash
 farscry setup
@@ -131,7 +131,7 @@ echo "alias fp='farscry paste'" >> ~/.zshrc && source ~/.zshrc
 
 Now: screenshot → `fp` → done.
 
-## Smart paste — Cmd+V auto-detects images
+## Smart paste: Cmd+V auto-detects images
 
 After running `farscry setup`, answer **y** to "Configure smart paste?" to create the script and see instructions for your terminal.
 
@@ -139,7 +139,7 @@ The script (`~/.farscry/smart-paste.sh`) checks whether the clipboard contains a
 - **Image in clipboard** → runs `farscry paste` → sends to your agent
 - **Text in clipboard** → falls back to normal paste (`pbpaste` / `xclip` / `Get-Clipboard`)
 
-**macOS — iTerm2:**
+**macOS (iTerm2):**
 ```
 Preferences → Keys → Key Bindings → +
 Shortcut: Cmd+V
@@ -147,21 +147,21 @@ Action: Run Command
 Command: ~/.farscry/smart-paste.sh
 ```
 
-**macOS — Warp:**
+**macOS (Warp):**
 ```
 Settings → Features → Custom Key Bindings
 Key: Cmd+V
 Action: Run Command: ~/.farscry/smart-paste.sh
 ```
 
-**macOS — Terminal.app:** Not supported natively. Use `fp` instead.
+**macOS (Terminal.app):** Not supported natively. Use `fp` instead.
 
-**Linux — Gnome Terminal:** Add to `~/.bashrc`:
+**Linux (Gnome Terminal):** Add to `~/.bashrc`:
 ```bash
 bind -x '"\C-v": ~/.farscry/smart-paste.sh'
 ```
 
-**Linux — Kitty** (`~/.config/kitty/kitty.conf`):
+**Linux (Kitty)** (`~/.config/kitty/kitty.conf`):
 ```
 map ctrl+v launch --stdin-source=@last_cmd_output ~/.farscry/smart-paste.sh
 ```
@@ -189,8 +189,8 @@ farscry extract --from-clipboard | claude -p "fix this"
 
 ### Devin
 ```bash
-devin -p "$(farscry extract screen.png) — fix this"
-devin -p "$(farscry extract --from-clipboard) — fix this"
+devin -p "$(farscry extract screen.png): fix this"
+devin -p "$(farscry extract --from-clipboard): fix this"
 ```
 
 ### Codex
@@ -199,14 +199,14 @@ farscry extract screen.png | codex exec "fix this:"
 farscry extract --from-clipboard | codex exec "fix this:"
 ```
 
-### MCP (all agents — recommended)
+### MCP (all agents, recommended)
 ```bash
 farscry serve --mcp
 ```
 Supports multiple images via `image_paths` parameter.
 
 ### Supported image formats
-PNG, JPEG, GIF, WEBP, TIFF — from clipboard, file, or stdin.
+PNG, JPEG, GIF, WEBP, TIFF. From clipboard, file, or stdin.
 From clipboard: Cmd+Shift+4, Shottr, or Cmd+C on an image file in Finder.
 
 ## Common flags

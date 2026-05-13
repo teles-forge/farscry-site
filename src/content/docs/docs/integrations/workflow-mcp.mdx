@@ -7,7 +7,7 @@ import { Tabs, TabItem } from '@astrojs/starlight/components';
 
 farscry works in two modes: directly through a CLI pipe, or as a local MCP server that an MCP-compatible workflow can call when it needs screenshot context.
 
-## Quick start — CLI pipe
+## Quick start: CLI pipe
 
 ```bash
 farscry extract screenshot.png | your-runner "fix this"
@@ -90,7 +90,7 @@ The MCP host starts the farscry server when the session begins and keeps OCR eng
 
 ## What the workflow receives
 
-Without farscry, the workflow receives a raw image and must interpret the full screenshot again — adding latency and cost.
+Without farscry, the workflow receives a raw image and must interpret the full screenshot again, adding latency and cost.
 
 With farscry MCP:
 
@@ -135,5 +135,5 @@ farscry extract form.png --affordances | your-runner "fill in the form with test
 ## Tips
 
 - Use `farscry extract screenshot.png --context` for a one-line `agent_context` summary when you don't need the full tree
-- Use `farscry diff` before asking "did this work?" — avoids a full-screen vision pass, returns an exact typed delta
-- Use `--affordances` when the workflow needs to interact with UI elements — lists exactly what can be clicked or typed
+- Use `farscry diff` before asking "did this work?". Avoids a full-screen vision pass, returns an exact typed delta
+- Use `--affordances` when the workflow needs to interact with UI elements. Lists exactly what can be clicked or typed

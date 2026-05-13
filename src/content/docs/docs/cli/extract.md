@@ -26,7 +26,7 @@ cat screenshot.png | farscry extract
 # From clipboard (Cmd+Shift+4 on macOS)
 farscry extract --from-clipboard
 
-# Batch — parallel processing
+# Batch (parallel processing)
 farscry extract *.png
 farscry extract img1.png img2.png img3.png
 
@@ -61,7 +61,7 @@ Options
 | `--text-only` | false | Suppress image forwarding to workflow |
 | `--lang <code>` | auto | Force language (e.g. `eng`, `por`, `eng+por`) |
 | `--max-size <n>mb` | 10mb | Override 10MB input size limit |
-| `-v` | false | Verbose — show processing steps |
+| `-v` | false | Verbose, show processing steps |
 | `--debug` | false | Full debug output to stderr |
 
 Output format
@@ -95,7 +95,7 @@ Supported input formats
 | GIF | `47 49 46 38` |
 | TIFF | `49 49 2A 00` / `4D 4D 00 2A` |
 
-Input validation uses magic bytes — file extension is ignored.
+Input validation uses magic bytes. File extension is ignored..
 
 Exit codes
 

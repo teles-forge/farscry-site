@@ -1111,7 +1111,8 @@
     <div class="feature-desc">
       <div class="section-label">Coordinate Extraction</div>
       <h2>Coordinates, not captions</h2>
-      <p>Screenshot tooling returns descriptions. Workflows guess where to click, miss the target, and fail. OSWorld benchmarks show a <strong style="color:var(--text)">58% overall task failure rate</strong> (GPT-4V baseline, arXiv:2404.07972). Agents that guess coordinates fail. Agents with exact coordinates act.</p>
+      <p>Screenshot tooling returns descriptions. Workflows guess where to click, miss the target, and fail. OSWorld benchmarks show a <strong style="color:var(--text)">58% overall task failure rate</strong> (GPT-4V baseline, <a href="https://arxiv.org/abs/2404.07972" target="_blank" rel="noopener" style="color:var(--accent-high);text-decoration:none;">"arXiv:2404.07972"</a>).</p>
+      <p>Agents that guess coordinates fail. Agents with exact coordinates act.</p>
       <p>farscry returns typed elements with exact pixel coordinates. The workflow knows the button is at (400,300). It clicks. It succeeds.</p>
       <p>Screenshot, error printout, Figma export, phone photo of a screen. Offline. No GPU.</p>
     </div>
@@ -1299,13 +1300,13 @@
         <span class="tl"><span class="k">screen_type:</span> <span class="s">form</span></span>
         <span class="tl"><span class="d">---</span></span>
         <span class="tl">&nbsp;</span>
-        <span class="tl"><span class="pos">[top-center]</span>  <span class="k">heading</span>  <span class="s">"Checkout"</span>                  <span class="d">at (400,80)</span></span>
-        <span class="tl"><span class="pos">[middle-center]</span>  <span class="k">input</span>    <span class="s">"Name"</span>          value=<span class="s">""</span>      <span class="changed">empty:true</span>    <span class="d">at (340,180)</span></span>
-        <span class="tl"><span class="pos">[middle-center]</span>  <span class="k">input</span>    <span class="s">"Card number"</span>   value=<span class="s">""</span>      <span class="changed">empty:true</span>    <span class="d">at (340,240)</span></span>
-        <span class="tl"><span class="pos">[middle-center]</span>  <span class="k">input</span>    <span class="s">"Expiry"</span>        value=<span class="s">"12/26"</span>               <span class="d">at (260,300)</span></span>
-        <span class="tl"><span class="pos">[middle-right]</span>   <span class="k">input</span>    <span class="s">"CVV"</span>           value=<span class="s">"···"</span>    <span class="d">masked:true</span>   <span class="d">at (480,300)</span></span>
-        <span class="tl"><span class="pos">[bottom]</span>      <span class="k">button</span>   <span class="s">"Pay $24.99"</span>                        <span class="appeared">enabled:true</span>  <span class="d">at (400,420)</span></span>
-        <span class="tl"><span class="pos">[bottom]</span>      <span class="k">button</span>   <span class="s">"Cancel"</span>                            <span class="appeared">enabled:true</span>  <span class="d">at (400,470)</span></span>
+        <span class="tl"><span class="pos">[top-center]</span>    <span class="k">heading</span>  <span class="s">"Checkout"</span></span>
+        <span class="tl"><span class="pos">[middle-center]</span> <span class="k">input</span>    <span class="s">"Name"</span>          <span class="changed">empty:true</span></span>
+        <span class="tl"><span class="pos">[middle-center]</span> <span class="k">input</span>    <span class="s">"Card number"</span>   <span class="changed">empty:true</span></span>
+        <span class="tl"><span class="pos">[middle-center]</span> <span class="k">input</span>    <span class="s">"Expiry"</span>        <span class="d">value:"12/26"</span></span>
+        <span class="tl"><span class="pos">[middle-right]</span>  <span class="k">input</span>    <span class="s">"CVV"</span>           <span class="d">masked:true</span></span>
+        <span class="tl"><span class="pos">[bottom]</span>        <span class="k">button</span>   <span class="s">"Pay $24.99"</span>    <span class="appeared">enabled:true</span></span>
+        <span class="tl"><span class="pos">[bottom]</span>        <span class="k">button</span>   <span class="s">"Cancel"</span>        <span class="appeared">enabled:true</span></span>
         <span class="tl">&nbsp;</span>
         <span class="tl"><span class="sec">affordances:</span></span>
         <span class="tl">  <span class="changed">type</span>  <span class="punc">→</span> <span class="s">"Name"</span>           <span class="d">at (340,180)</span></span>
@@ -1346,7 +1347,7 @@
         <span class="tl"><span class="changed">changed:</span>   <span class="k">button</span>  <span class="s">"Pay $24.99"</span>  <span class="d">loading:true</span></span>
         <span class="tl"><span class="removed">removed:</span>   <span class="d">spinner  at (450,200)</span></span>
         <span class="tl">&nbsp;</span>
-        <span class="tl"><span class="d">— 38ms · 3 of 12 elements changed</span></span>
+        <span class="tl"><span class="d">38ms · 3 of 12 elements changed</span></span>
       </div>
     </div>
   </div>
@@ -1368,7 +1369,7 @@
 <section id="smart-paste">
   <div class="section-label">Smart Paste</div>
   <h2>Cmd+V becomes image-aware.</h2>
-  <p class="section-sub">After <code style="font-family:var(--mono);font-size:0.875em;color:var(--accent-high)">farscry setup</code>, Cmd+V detects what's in your clipboard — image or text — and routes accordingly. No command. No alias. Just paste.</p>
+  <p class="section-sub">After <code style="font-family:var(--mono);font-size:0.875em;color:var(--accent-high)">farscry setup</code>, Cmd+V detects what's in your clipboard, image or text, and routes it. No command. No alias. Just paste.</p>
 
   <div class="install-single">
     <div class="terminal">
@@ -1378,18 +1379,19 @@
         <span class="dot dot-g"></span>
         <span class="terminal-title">farscry setup</span>
       </div>
-      <div class="install-cmd-body">
+      <div class="install-cmd-body" style="padding:1.25rem;line-height:1.75;">
         <div><span class="install-prompt">$</span><span class="install-cmd-text">farscry setup</span></div>
         <div style="margin-top:0.5rem;color:var(--text-dim);font-family:var(--mono);font-size:0.8125rem">Configure smart Cmd+V? [y/N]: y</div>
         <div style="color:var(--success);font-family:var(--mono);font-size:0.8125rem">✓ ~/.farscry/smart-paste.sh created</div>
-        <div style="color:var(--text-dim);font-family:var(--mono);font-size:0.8125rem">iTerm2 · Warp · Kitty · Gnome Terminal · Windows Terminal</div>
+        <div style="margin-top:0.25rem;color:var(--text-muted);font-family:var(--mono);font-size:0.75rem;letter-spacing:0.02em;">iTerm2 · Warp · Kitty · Gnome Terminal · Windows Terminal</div>
       </div>
     </div>
   </div>
 
-  <p class="install-note">
-    Screenshot → Cmd+V → image detected → sent to your agent. Text in clipboard falls back to normal paste.
-  </p>
+  <div style="margin-top:1.5rem;padding:0.875rem 1.25rem;background:rgba(99,102,241,0.06);border:1px solid rgba(99,102,241,0.15);border-radius:0.5rem;font-family:var(--mono);font-size:0.8125rem;line-height:1.75;color:var(--text-muted);">
+    Screenshot → Cmd+V → image detected → sent to your agent.<br />
+    Text in clipboard falls back to normal paste.
+  </div>
 </section>
 
 <hr class="divider" />
