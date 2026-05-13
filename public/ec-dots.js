@@ -12,13 +12,23 @@
       wrap.className = 'ec-dots';
       wrap.setAttribute('aria-hidden', 'true');
 
-      var colors = ['#ff5f57', '#ffbd2e', '#28c840'];
+      var colors = ['#ff5f57', '#febc2e', '#28c840'];
       colors.forEach(function (color) {
         var dot = document.createElement('span');
         dot.className = 'ec-dot';
+        /* Explicit resets prevent all:revert + UA styles from adding
+           borders, outlines or box-shadows that create a dark-center look */
         dot.style.cssText =
           'display:inline-block;width:12px;height:12px;border-radius:50%;' +
-          'background:' + color + ';flex-shrink:0;';
+          'background:' + color + ';' +
+          'border:0;outline:0;box-shadow:none;' +
+          'padding:0;margin:0;' +
+          'flex-shrink:0;';
+        /* Force via setProperty so !important wins over all:revert */
+        dot.style.setProperty('background', color, 'important');
+        dot.style.setProperty('border', '0', 'important');
+        dot.style.setProperty('box-shadow', 'none', 'important');
+        dot.style.setProperty('outline', '0', 'important');
         wrap.appendChild(dot);
       });
 
