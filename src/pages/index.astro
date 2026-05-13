@@ -359,6 +359,20 @@
     .feature-desc p {
       color: var(--text-muted); font-size: 1rem; line-height: 1.75; margin-bottom: 1.125rem;
     }
+    .describe-output { display: flex; flex-direction: column; }
+    .describe-output-label {
+      font-family: var(--mono); font-size: 0.6875rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--text-dim); margin-bottom: 0.875rem;
+    }
+    .describe-output-block {
+      background: var(--bg-code);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.375rem;
+      font-family: var(--mono); font-size: 0.8125rem;
+      line-height: 1.85;
+    }
     .feature-stats {
       display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.25rem;
     }
@@ -810,7 +824,7 @@
       }
     }
     /* ─────────── FULL COMPARISON TABLE ─────────── */
-    .compare-section { max-width: 700px; }
+    .compare-section { max-width: 700px; margin: 0 auto; }
     .compare-group { margin-bottom: 2rem; }
     .compare-group-label {
       font-family: var(--mono); font-size: 0.6875rem; font-weight: 700;
@@ -1080,12 +1094,26 @@
     <div class="feature-desc">
       <div class="section-label">Coordinate Extraction</div>
       <h2>Coordinates, not captions</h2>
-      <p>Screenshot tooling often returns descriptions. Workflows guess where to click, miss the target, and fail. OSWorld data shows <strong style="color:var(--text)">58% of visual automation failures trace back to wrong coordinates</strong> - not wrong decisions.</p>
+      <p>Screenshot tooling returns descriptions. Workflows guess where to click, miss the target, and fail. OSWorld data shows <strong style="color:var(--text)">58% of visual automation failures trace back to wrong coordinates</strong> — not wrong decisions.</p>
       <p>farscry returns typed elements with exact pixel coordinates. The workflow knows the button is at (400,300). It clicks. It succeeds.</p>
       <p>Screenshot, error printout, Figma export, phone photo of a screen. Offline. No GPU.</p>
-
     </div>
 
+    <div class="describe-output">
+      <div class="describe-output-label">farscry output</div>
+      <div class="describe-output-block">
+        <span class="tl"><span class="d">→</span> <span class="k">button</span>  <span class="s">"Submit"</span>      <span class="d">at (640,480)</span>  <span class="appeared">enabled:true</span></span>
+        <span class="tl"><span class="d">→</span> <span class="k">input</span>   <span class="s">"Username"</span>    <span class="d">at (400,200)</span>  <span class="changed">empty:true</span></span>
+        <span class="tl"><span class="d">→</span> <span class="k">input</span>   <span class="s">"Password"</span>    <span class="d">at (400,280)</span>  <span class="changed">empty:true</span></span>
+        <span class="tl"><span class="d">→</span> <span class="removed">error</span>   <span class="s">"Invalid password"</span>  <span class="d">at (400,340)</span></span>
+        <span class="tl"><span class="d">→</span> <span class="k">link</span>    <span class="s">"Forgot password?"</span>  <span class="d">at (400,380)</span></span>
+        <span class="tl">&nbsp;</span>
+        <span class="tl"><span class="sec">affordances:</span></span>
+        <span class="tl">  <span class="changed">type</span>  <span class="punc">→</span> <span class="s">"Username"</span>  <span class="d">at (400,200)</span></span>
+        <span class="tl">  <span class="changed">type</span>  <span class="punc">→</span> <span class="s">"Password"</span>  <span class="d">at (400,280)</span></span>
+        <span class="tl">  <span class="changed">click</span> <span class="punc">→</span> <span class="s">"Submit"</span>    <span class="d">at (640,480)</span></span>
+      </div>
+    </div>
   </div>
 </section>
 
