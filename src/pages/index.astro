@@ -482,12 +482,13 @@
     }
     .bench-row.in-view .bench-bar { transform: scaleX(1); }
 
+    /* farscry bar is nearly invisible at scale — THAT IS THE MESSAGE */
     .bench-bar--ours {
-      width: max(6px, 2.11%);
+      width: max(6px, 1%);  /* 38/3800 ≈ 1% */
       background: linear-gradient(to right, var(--accent), #818cf8);
     }
     .bench-bar--mid {
-      width: 16.67%;
+      width: 65.8%;  /* 2500/3800 */
       background: var(--text-dim);
     }
     .bench-bar--slow {
@@ -781,8 +782,8 @@
       <p>Screenshot, error printout, Figma export, phone photo of a screen. Offline. No GPU.</p>
       <div class="feature-stats">
         <div class="feature-stat">
-          <span class="feature-stat-num">~100</span>
-          <span class="feature-stat-label">tokens per output</span>
+          <span class="feature-stat-num">~175</span>
+          <span class="feature-stat-label">tokens per output (avg)</span>
         </div>
         <div class="feature-stat">
           <span class="feature-stat-num">&lt;30s</span>
@@ -843,7 +844,7 @@
     </div>
     <div class="bench-stat">
       <span class="bench-stat-num">100%</span>
-      <span class="bench-stat-label">accuracy parity with cloud vision systems (N=40)</span>
+      <span class="bench-stat-label">accuracy parity with cloud vision (N=20 screenshots, 2 runs each)</span>
     </div>
     <div class="bench-stat">
       <span class="bench-stat-num">$0</span>
@@ -861,18 +862,18 @@
       <div class="bench-num ours">38ms</div>
     </div>
     <div class="bench-row">
-      <div class="bench-name">Tesseract</div>
+      <div class="bench-name">Tesseract (4K)</div>
       <div class="bench-track">
         <div class="bench-bar bench-bar--mid"></div>
       </div>
-      <div class="bench-num">300ms <span class="bench-mult">8x</span></div>
+      <div class="bench-num">2,500ms <span class="bench-mult">65x</span></div>
     </div>
     <div class="bench-row">
-      <div class="bench-name">remote processing</div>
+      <div class="bench-name">cloud vision</div>
       <div class="bench-track">
         <div class="bench-bar bench-bar--slow"></div>
       </div>
-      <div class="bench-num">1800ms <span class="bench-mult">47x</span></div>
+      <div class="bench-num">~2-5s <span class="bench-mult">~100x</span></div>
     </div>
   </div>
 
@@ -934,7 +935,7 @@
         <div class="loop-item-connector"></div>
         <div class="loop-item">
           <span class="loop-item-icon"></span>
-          <span>Wait ~1800ms for response</span>
+          <span>Wait ~2-5 seconds for response</span>
         </div>
         <div class="loop-item-connector"></div>
         <div class="loop-item">
@@ -942,7 +943,7 @@
           <span>Workflow reads result</span>
         </div>
       </div>
-      <div class="loop-cost loop-cost-bad">~1800ms · ~$0.003 per verification</div>
+      <div class="loop-cost loop-cost-bad">~2-5s · ~$0.0047 per image</div>
     </div>
 
     <div class="loop-box loop-box--good">
@@ -1000,7 +1001,7 @@
     <div class="card">
       <div class="card-tag">mode 2 - diff</div>
       <h3>What changed between states</h3>
-      <p>Run before and after an action. Get only what changed: which button flipped state, which field appeared, what error resolved. Deterministic. Offline. ~100 tokens.</p>
+      <p>Run before and after an action. Get only what changed: which button flipped state, which field appeared, what error resolved. Deterministic. Offline. ~175 tokens avg.</p>
       <div class="card-code">
         farscry diff before.png after.png<br />
         -> button "Submit": disabled -> enabled<br />
@@ -1037,7 +1038,7 @@
     <div class="install-way">
       <h3>MCP server</h3>
       <p>Expose farscry as an MCP tool. Your workflow calls it directly when it needs to understand an image, with no manual piping required.</p>
-      <div class="card-code">farscry mcp</div>
+      <div class="card-code">farscry serve --mcp</div>
     </div>
   </div>
 
