@@ -121,6 +121,7 @@ farscry setup
 ```
 
 Detects claude, devin, codex, aider. Shows the alias to add and MCP config to paste.
+Offers to create `~/.farscry/smart-paste.sh` and show terminal key binding instructions.
 
 Then add the short alias:
 
@@ -129,6 +130,54 @@ echo "alias fp='farscry paste'" >> ~/.zshrc && source ~/.zshrc
 ```
 
 Now: screenshot → `fp` → done.
+
+## Smart paste — Cmd+V auto-detects images
+
+After running `farscry setup`, answer **y** to "Configure smart paste?" to create the script and see instructions for your terminal.
+
+The script (`~/.farscry/smart-paste.sh`) checks whether the clipboard contains an image:
+- **Image in clipboard** → runs `farscry paste` → sends to your agent
+- **Text in clipboard** → falls back to normal paste (`pbpaste` / `xclip` / `Get-Clipboard`)
+
+**macOS — iTerm2:**
+```
+Preferences → Keys → Key Bindings → +
+Shortcut: Cmd+V
+Action: Run Command
+Command: ~/.farscry/smart-paste.sh
+```
+
+**macOS — Warp:**
+```
+Settings → Features → Custom Key Bindings
+Key: Cmd+V
+Action: Run Command: ~/.farscry/smart-paste.sh
+```
+
+**macOS — Terminal.app:** Not supported natively. Use `fp` instead.
+
+**Linux — Gnome Terminal:** Add to `~/.bashrc`:
+```bash
+bind -x '"\C-v": ~/.farscry/smart-paste.sh'
+```
+
+**Linux — Kitty** (`~/.config/kitty/kitty.conf`):
+```
+map ctrl+v launch --stdin-source=@last_cmd_output ~/.farscry/smart-paste.sh
+```
+
+**Windows Terminal:**
+```
+Settings → Actions → Add new
+Command: wt.exe new-tab powershell -Command ~/.farscry/smart-paste.ps1
+Keys: ctrl+v
+```
+
+:::caution
+farscry never modifies your terminal config automatically. The instructions above are for manual setup.
+:::
+
+**Result:** Screenshot with any tool → press Cmd+V in your terminal → farscry detects the image and sends it to your agent. No command to type.
 
 ## Agent integrations
 
