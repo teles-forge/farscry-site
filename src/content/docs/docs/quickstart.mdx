@@ -55,18 +55,26 @@ import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
 
    ```
    === farscry visual context ===
+   source: screenshot.png
    screen_type: config
+   state_id: phash:3d9b1e7a...
+   confidence: high
+   lang: eng
+   agent_context: "Payment Settings - 3 editable fields, Save available"
    ---
 
-   [top-left]   heading  "Payment Settings"
-   [mid-left]   label    "Max Value:"
-   [mid-center] input    value="1500"       editable:true   at (200,120)
-   [mid-right]  button   "Save Changes"     enabled:true    at (400,300)
-   [bottom]     error    "Value must be ≤ 10000"
+   [top-left]      heading  "Payment Settings"
+   [middle-left]   label    "Max Value:"
+   [middle-center] input    "1500"
+                   value="1500"
+                   enabled:true
+   [middle-right]  button   "Save Changes"
+                   enabled:true
+   [bottom-left]   error    "Value must be <= 10000"
 
    affordances:
-     click → "Save Changes"   at (400,300)
-     type  → "Max Value"      at (200,120)   current:"1500"
+     click: "Save Changes"   enabled: true
+     type:  input "Max Value"  current: "1500"
    ```
 
 4. **Diff two screenshots**
@@ -79,20 +87,18 @@ import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
 
    ```
    === farscry diff ===
-   from: phash:8f4a2c3d
-   to:   phash:3d9b1e7a
+   state_id:   phash:3d9b1e7a...
+   delta_from: phash:8f4a2c3d...
+   context_similarity: 0.847
+   context_changed: true
    ---
 
-   + appeared:
-     "error_banner"  "Card declined"   at (0,48)
+   appeared:  error    "Card declined"
+   changed:   button   "Submit" -> disabled
+   removed:   label    "spinner"
+   unchanged: [9 elements]
 
-   ~ changed:
-     "Submit"   enabled:true → enabled:false
-
-   - removed:
-     spinner   at (450,200)
-
-   — 38ms · 3 of 12 elements changed
+   Token savings: ~312 tokens saved vs re-sending both images
    ```
 
 5. **Pipe to an agent**
