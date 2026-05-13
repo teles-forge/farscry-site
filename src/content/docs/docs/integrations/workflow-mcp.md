@@ -19,9 +19,17 @@ With the MCP server, the workflow can call `farscry_extract` or `farscry_diff` w
 
 Setup
 
-Create or update `.workflow/mcp.json` in your project:
+Run `farscry setup` to auto-detect your agent and get the config snippet to paste:
 
-```json title=".workflow/mcp.json"
+```bash
+farscry setup
+```
+
+Or add to your agent's MCP config manually:
+
+**Claude Code** (`~/.claude/mcp.json`):
+
+```json
 {
   "mcpServers": {
     "farscry": {
@@ -32,6 +40,10 @@ Create or update `.workflow/mcp.json` in your project:
 }
 ```
 
+**Cursor** (`~/.cursor/mcp.json`) — same config.
+
+**Windsurf** (`~/.windsurf/mcp.json`) — same config.
+
 The MCP host starts the farscry server when the session begins and keeps OCR engines warm for the duration.
 
 What the workflow receives
@@ -41,17 +53,19 @@ Without farscry, the workflow receives a raw image and must interpret the full s
 With farscry MCP:
 
 ```
-[VISUAL CONTEXT]
 vasp_version: 1.0
 state_id: phash:a3f7c2b1...
 screen_type: error
 confidence: high
-workflow_context: "Payment error - card declined, retry available"
-error_message: "Payment failed - card declined"
-error_code: "ERR_402"
+agent_context: "Payment error - card declined, retry available"
+---
+[bottom] error  "Payment failed - card declined"  at (20,350)
+[bottom] button "Retry"  enabled:true  at (400,420)
+[bottom] button "Back"   enabled:true  at (400,470)
+
 affordances:
-  - click: "Retry" enabled: true
-  - click: "Back"  enabled: true
+  click → "Retry" at (400,420)  enabled:true
+  click → "Back"  at (400,470)  enabled:true
 ```
 
 
@@ -60,27 +74,14 @@ Example workflows
 Fix a terminal error
 
 ```bash
-Take a screenshot of the terminal
-farscry terminal.png
-vasp_version: 1.0
-screen_type: terminal
-workflow_context: "Build failed - connection refused at net.js:1724"
-content: |
-Error: connection refused
-at Server.listen (net.js:1724)
-
 farscry terminal.png | your-runner "fix this build error"
 ```
 
 Verify a UI action worked
 
 ```bash
-Before clicking
 farscry before.png -o before.vasp
 
-Automation clicks "Save Changes"
-
-After clicking
 farscry diff before.png after.png | your-runner "did the save succeed?"
 ```
 

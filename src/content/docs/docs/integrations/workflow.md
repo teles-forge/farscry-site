@@ -3,17 +3,13 @@ title: Action Verification
 description: Use farscry with MCP workflows to verify UI actions without remote screenshot processing calls.
 ---
 
-When a workflow takes a UI action, `farscry diff` returns what changed in under 200ms - locally, $0, no cloud round-trip.
+When a workflow takes a UI action, `farscry diff` returns what changed locally, $0, no cloud round-trip.
 
 The core pattern
 
 ```bash
-1. Capture before state
 farscry before.png -o before.vasp
 
-2. Workflow takes action (click, type, navigate)
-
-3. Verify what changed
 farscry diff before.png after.png
 ```
 
@@ -25,20 +21,17 @@ Installation
 
 ```bash
 npm install -g farscry
-or: pip install farscry
 ```
+
+Or: `pip install farscry`
 
 Configure MCP settings
 
-Add via CLI or edit `~/.config/workflow/config.json` directly:
+Run `farscry setup` to auto-detect your agent and get the config snippet to paste.
 
-```bash
-workflow mcp add farscry --command "farscry serve --mcp"
-```
+Or add manually to your agent's MCP config:
 
-Or manually:
-
-```json title="~/.config/workflow/config.json"
+```json
 {
   "mcpServers": {
     "farscry": {
@@ -57,7 +50,7 @@ Before farscry
 
 ```
 [a workflow takes action on UI]
-[workflow sends a new screenshot to remote processing: $0.003, ~1800ms]
+[workflow sends a new screenshot to remote processing: $0.0047, typically 2-5s (cloud round-trip)]
 [workflow receives a full-screen description]
 [workflow extracts what changed manually]
 ```
@@ -66,58 +59,49 @@ With farscry
 
 ```
 [a workflow takes action on UI]
-[farscry diff before.png after.png: $0, ~180ms, local]
+[farscry diff before.png after.png: $0, locally, no cloud round-trip]
 
-delta:
-  appeared:
-    - button: "Retry" at (300, 420) enabled: true
-  changed:
-    - button: "Submit" -> "Processing..." disabled: true
-  removed:
-    - spinner at (450, 200)
+appeared:
+  - button "Retry" at (300,420)  enabled:true
+changed:
+  - button "Submit" → "Processing..."  disabled:true
+removed:
+  - spinner at (450,200)
 ```
 
 
 Example: verifying a payment flow
 
 ```bash
-Step 1 - Extract initial state
 farscry payment_form.png --affordances
 affordances:
 - type:  input "Card Number"   current: ""
 - click: "Submit Payment"      enabled: true
 
-Step 2 - Capture before submit
 cp payment_form.png before.png
 
-Step 3 - Workflow fills form and clicks Submit
-
-Step 4 - Verify
 farscry diff before.png after_submit.png
-delta:
 appeared:
-- spinner at (300, 200)
-- text: "Processing payment..."
+  - spinner at (300,200)
+  - text "Processing payment..."
 changed:
-- button: "Submit Payment" -> disabled: true
+  - button "Submit Payment" → disabled:true
 
-Step 5 - Wait and verify completion
 farscry diff after_submit.png after_complete.png
-delta:
 appeared:
-- badge: "Payment successful" state: success
+  - badge "Payment successful"  state:success
 removed:
-- spinner
+  - spinner
 ```
 
 Performance comparison
 
 | Approach | Latency | Cost | Offline |
 |---|---|---|---|
-| farscry diff | ~180ms | $0 | Yes |
-| remote screenshot processing | ~1800ms | $0.003/img | No |
+| farscry diff | locally, no cloud | $0 | Yes |
+| remote screenshot processing | ~2-5s (unconfirmed exact) | $0.0047/img | No |
 
-Over a 20-step automation session with 10 screenshot verifications: farscry saves ~16 seconds and ~$0.03 per run.
+Over a 20-step automation session with 10 screenshot verifications: farscry saves several seconds and ~$0.047 per run.
 
 Loop detection
 
@@ -125,9 +109,11 @@ farscry's `state_id` (perceptual hash) enables loop detection in automation work
 
 ```bash
 farscry screen.png --context
-state_id: phash:a3f7c2b1...
-
-If same state_id appears twice -> workflow is in a loop
+Payment settings — Save available
 ```
+
+For `state_id`, run `farscry screen.png` without `--context`.
+
+If the same `state_id` appears twice, the workflow is in a loop — the action had no effect.
 
 farscry supports this to detect when an action had no effect and bail out early.
