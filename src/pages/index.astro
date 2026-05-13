@@ -740,6 +740,140 @@
     .vasp-term-body { padding: 1.25rem; line-height: 1.75; }
 
 
+    /* ─────────── BENCHMARK: BIG NUMBER (Turbopack-style) ─────────── */
+    .perf-hero {
+      text-align: center;
+      padding: 3.5rem 0 3rem;
+    }
+    .perf-number {
+      font-family: var(--mono);
+      font-size: clamp(6rem, 18vw, 11rem);
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      line-height: 0.9;
+      color: var(--text);
+      display: block;
+      font-variant-numeric: tabular-nums;
+    }
+    .perf-number-unit { color: var(--accent-high); }
+    .perf-context {
+      font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+      color: var(--text-muted);
+      margin-top: 1.5rem;
+      letter-spacing: -0.01em;
+      font-weight: 400;
+    }
+    .perf-meta {
+      font-family: var(--mono);
+      font-size: 0.875rem;
+      color: var(--text-dim);
+      margin-top: 0.75rem;
+      letter-spacing: 0;
+    }
+    .perf-separator {
+      height: 1px;
+      background: var(--border-soft);
+      margin: 3.5rem 0;
+    }
+    .cost-lines { max-width: 580px; }
+    .cost-line {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border-soft);
+      font-size: 1rem;
+    }
+    .cost-line:first-child { border-top: 1px solid var(--border-soft); }
+    .cost-line-label { color: var(--text-muted); }
+    .cost-line-val {
+      font-family: var(--mono); font-weight: 700; font-size: 1.1875rem;
+      font-variant-numeric: tabular-nums;
+    }
+    .cost-line--bad .cost-line-val  { color: var(--danger); }
+    .cost-line--good .cost-line-label { color: var(--text); font-weight: 500; }
+    .cost-line--good .cost-line-val  { color: var(--success); }
+
+    /* ─────────── DIFF: FLOWING TIMELINE ─────────── */
+    .diff-timeline { margin-top: 0; }
+    .diff-track {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border-soft);
+      flex-wrap: wrap;
+    }
+    .diff-track:first-child { border-top: 1px solid var(--border-soft); }
+    .diff-track-who {
+      font-family: var(--mono); font-size: 0.6875rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      width: 6rem; flex-shrink: 0;
+    }
+    .diff-track--bad  .diff-track-who { color: var(--text-dim); }
+    .diff-track--good .diff-track-who { color: var(--accent-high); }
+    .diff-steps { display: flex; align-items: center; gap: 0.375rem; flex: 1; flex-wrap: wrap; }
+    .diff-step { font-size: 0.9375rem; color: var(--text-muted); white-space: nowrap; }
+    .diff-step--bad { color: var(--danger); opacity: 0.8; }
+    .diff-step--good { color: var(--success); font-weight: 600; }
+    .diff-arr { color: var(--text-dim); font-size: 0.875rem; }
+    .diff-track-price {
+      font-family: var(--mono); font-size: 0.8125rem;
+      margin-left: auto; white-space: nowrap; flex-shrink: 0;
+    }
+    .diff-track--bad  .diff-track-price { color: var(--danger); }
+    .diff-track--good .diff-track-price { color: var(--success); }
+
+    /* ─────────── THREE MODES: ASYMMETRIC ─────────── */
+    .mode-primary { margin-bottom: 1.75rem; }
+    .mode-primary-header {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;
+    }
+    .mode-tag {
+      font-family: var(--mono); font-size: 0.6875rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--accent-high); background: var(--accent-low);
+      border: 1px solid rgba(99,102,241,0.25);
+      padding: 0.2rem 0.625rem; border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .mode-primary-title {
+      font-size: 1.0625rem; font-weight: 600; color: var(--text);
+      letter-spacing: -0.01em;
+    }
+    .mode-primary-desc {
+      font-size: 0.9375rem; color: var(--text-muted); margin-bottom: 1.25rem;
+      max-width: 600px; line-height: 1.65;
+    }
+    .mode-pair {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    }
+    @media (max-width: 640px) { .mode-pair { grid-template-columns: 1fr; } }
+    .mode-secondary {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.5rem;
+    }
+    .mode-secondary-title {
+      display: block; font-size: 1rem; font-weight: 600; color: var(--text);
+      margin: 0.625rem 0 0.75rem; letter-spacing: -0.01em;
+    }
+    .mode-secondary p {
+      font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.875rem; line-height: 1.6;
+    }
+
+    /* ─────────── INSTALL: SINGLE TERMINAL ─────────── */
+    .install-single { max-width: 560px; margin-bottom: 1.75rem; }
+    .install-cmd-body { padding: 1.5rem 1.75rem; line-height: 2; }
+    .install-prompt { color: var(--text-dim); margin-right: 0.5rem; user-select: none; }
+    .install-cmd-text { color: var(--text); font-family: var(--mono); font-size: 0.9375rem; }
+    .install-alts {
+      font-family: var(--mono); font-size: 0.875rem; color: var(--text-dim);
+      line-height: 1.8;
+    }
+    .install-alts a { color: var(--text-muted); text-decoration: none; }
+    .install-alts a:hover { color: var(--accent-high); }
+    .install-note {
+      font-size: 0.875rem; color: var(--text-dim); margin-top: 1.5rem;
+      font-family: var(--mono);
+    }
+    .install-note code { color: var(--accent-high); }
+
     footer {
       border-top: 1px solid var(--border-soft);
       padding: 3rem 2rem;
@@ -892,127 +1026,30 @@
 
 <!-- ═══════════════ BENCHMARK ═══════════════ -->
 <section id="benchmark">
-  <h2>Up to 15x fewer tokens. 38ms. Free.</h2>
-  <p class="section-sub">
-    1080p screenshots: ~9x fewer tokens (measured) ·
-    4K professional screens: ~15x fewer tokens (N=223)<br />
-    Warmed pipeline, M4 Pro (CoreML). Token counts: farscry VASP output vs. remote screenshot processing response.
-  </p>
+  <div class="section-label">Performance</div>
 
-  <!-- Stat cards -->
-  <div class="bench-stat-row">
-    <div class="bench-stat">
-      <span class="bench-stat-num">~15x</span>
-      <span class="bench-stat-label">fewer tokens - 4K screens (N=223)</span>
+  <div class="perf-hero">
+    <span class="perf-number">65<span class="perf-number-unit">×</span></span>
+    <div class="perf-context">faster than Tesseract on 4K screens</div>
+    <div class="perf-meta">38ms warm · $0 · offline · N=223, ScreenSpot-Pro (MIT)</div>
+  </div>
+
+  <div class="perf-separator"></div>
+
+  <div class="cost-lines">
+    <div class="cost-line cost-line--bad">
+      <span class="cost-line-label">Claude Vision — 10,000 images/day</span>
+      <span class="cost-line-val">$17,000/year</span>
     </div>
-    <div class="bench-stat">
-      <span class="bench-stat-num">38ms</span>
-      <span class="bench-stat-label">M4 Pro warm pipeline (CoreML)</span>
-    </div>
-    <div class="bench-stat">
-      <span class="bench-stat-num">100%</span>
-      <span class="bench-stat-label">accuracy parity with cloud vision (N=20 screenshots, 2 runs each)</span>
-    </div>
-    <div class="bench-stat">
-      <span class="bench-stat-num">$0</span>
-      <span class="bench-stat-label">per image, forever</span>
+    <div class="cost-line cost-line--good">
+      <span class="cost-line-label">farscry</span>
+      <span class="cost-line-val">$0</span>
     </div>
   </div>
 
-  <!-- Linear-scale bar chart. The near-invisible farscry bar IS the message. -->
-  <div class="bench-chart" id="bench-chart">
-    <div class="bench-row">
-      <div class="bench-name ours">farscry</div>
-      <div class="bench-track">
-        <div class="bench-bar bench-bar--ours"></div>
-      </div>
-      <div class="bench-num ours">38ms</div>
-    </div>
-    <div class="bench-row">
-      <div class="bench-name">Tesseract (4K)</div>
-      <div class="bench-track">
-        <div class="bench-bar bench-bar--mid"></div>
-      </div>
-      <div class="bench-num">2,500ms <span class="bench-mult">65x</span></div>
-    </div>
-    <div class="bench-row">
-      <div class="bench-name">cloud vision</div>
-      <div class="bench-track">
-        <div class="bench-bar bench-bar--slow"></div>
-      </div>
-      <div class="bench-num">~2-5s <span class="bench-mult">~100x</span></div>
-    </div>
-  </div>
-
-  <!-- Cost breakdown table -->
-  <div class="cost-table-wrap">
-    <table class="cost-table">
-      <thead>
-        <tr>
-          <th>Resolution</th>
-          <th>Claude tokens / image</th>
-          <th>Cost / image</th>
-          <th>Cost / day (10k)</th>
-          <th>farscry</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="cost-td-res">1080p</td>
-          <td>1,568 tokens</td>
-          <td class="cost-td-bad">$0.0047</td>
-          <td class="cost-td-bad">$47</td>
-          <td class="cost-td-good">$0</td>
-        </tr>
-        <tr>
-          <td class="cost-td-res">4K (Sonnet)</td>
-          <td>1,568 tokens (cap)</td>
-          <td class="cost-td-bad">$0.0047</td>
-          <td class="cost-td-bad">$47</td>
-          <td class="cost-td-good">$0</td>
-        </tr>
-        <tr>
-          <td class="cost-td-res">4K (Opus)</td>
-          <td>~5,000 tokens</td>
-          <td class="cost-td-bad">$0.025</td>
-          <td class="cost-td-bad">$250</td>
-          <td class="cost-td-good">$0</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="cost-annual-row">
-      <div class="cost-annual-item">
-        <span class="cost-annual-num cost-annual--bad">$17,000/yr</span>
-        <span class="cost-annual-label">1080p · 10k/day · Sonnet</span>
-      </div>
-      <div class="cost-annual-arrow">→</div>
-      <div class="cost-annual-item">
-        <span class="cost-annual-num cost-annual--good">$0</span>
-        <span class="cost-annual-label">with farscry</span>
-      </div>
-      <div class="cost-annual-divider"></div>
-      <div class="cost-annual-item">
-        <span class="cost-annual-num cost-annual--bad">$90,000/yr</span>
-        <span class="cost-annual-label">4K · 10k/day · Opus</span>
-      </div>
-      <div class="cost-annual-arrow">→</div>
-      <div class="cost-annual-item">
-        <span class="cost-annual-num cost-annual--good">$0</span>
-        <span class="cost-annual-label">with farscry</span>
-      </div>
-    </div>
-
-    <p class="cost-footnote">
-      Claude Sonnet 4.6: $3/MTok input.<br />
-      Claude Opus 4.7: $5/MTok input, 3.75MP max resolution.<br />
-      farscry: local processing, zero API calls, zero cost.
-    </p>
-  </div>
-
-  <div class="bench-repro">
+  <div class="bench-repro" style="margin-top:2.5rem">
     <a href="https://github.com/teles-forge/farscry/tree/main/benchmarks" target="_blank" rel="noopener">
-      Run it yourself -> github.com/teles-forge/farscry/benchmarks
+      Methodology → github.com/teles-forge/farscry/benchmarks
     </a>
   </div>
 </section>
@@ -1022,75 +1059,37 @@
 <!-- ═══════════════ SECTION B: AUTOMATIC DIFF ═══════════════ -->
 <section id="diff">
   <div class="section-label">Automatic Diff</div>
-  <h2>Stop paying for visual grounding</h2>
-  <p class="section-sub">After your workflow takes an action, farscry detects what changed automatically - no re-send to the cloud, no full screenshot, just the delta.</p>
+  <h2>38ms instead of 5 seconds, every action.</h2>
+  <p class="section-sub">After an action, farscry diffs before → after. No re-upload. No tokens wasted on pixels that didn't change.</p>
 
-  <div class="loop-compare">
-    <div class="loop-box loop-box--bad">
-      <div class="loop-title loop-title--bad">Without farscry</div>
-      <div class="loop-steps">
-        <div class="loop-item">
-          <span class="loop-item-icon">◈</span>
-          <span>Workflow decides: click "Save"</span>
-        </div>
-        <div class="loop-item-connector"></div>
-        <div class="loop-item">
-          <span class="loop-item-icon"></span>
-          <span>Action executed</span>
-        </div>
-        <div class="loop-item-connector"></div>
-        <div class="loop-item">
-          <span class="loop-item-icon"></span>
-          <span>Re-screenshot entire screen</span>
-        </div>
-        <div class="loop-item-connector"></div>
-        <div class="loop-item">
-          <span class="loop-item-icon"></span>
-          <span>Send full image to remote processing</span>
-        </div>
-        <div class="loop-item-connector"></div>
-        <div class="loop-item">
-          <span class="loop-item-icon"></span>
-          <span>Wait ~2-5 seconds for response</span>
-        </div>
-        <div class="loop-item-connector"></div>
-        <div class="loop-item">
-          <span class="loop-item-icon">◈</span>
-          <span>Workflow reads result</span>
-        </div>
+  <div class="diff-timeline">
+    <div class="diff-track diff-track--bad">
+      <span class="diff-track-who">without</span>
+      <div class="diff-steps">
+        <span class="diff-step">action</span>
+        <span class="diff-arr">→</span>
+        <span class="diff-step diff-step--bad">re-screenshot</span>
+        <span class="diff-arr">→</span>
+        <span class="diff-step diff-step--bad">1,568 tokens to cloud</span>
+        <span class="diff-arr">→</span>
+        <span class="diff-step diff-step--bad">wait 2-5s</span>
+        <span class="diff-arr">→</span>
+        <span class="diff-step">read result</span>
       </div>
-      <div class="loop-cost loop-cost-bad">~2-5s · ~$0.0047 per image</div>
+      <span class="diff-track-price">~$0.0047 · ~3 seconds</span>
     </div>
-
-    <div class="loop-box loop-box--good">
-      <div class="loop-title loop-title--good">With farscry</div>
-      <div class="loop-steps">
-        <div class="loop-item">
-          <span class="loop-item-icon">◈</span>
-          <span>Workflow decides: click "Save"</span>
-        </div>
-        <div class="loop-item-connector"></div>
-        <div class="loop-item">
-          <span class="loop-item-icon"></span>
-          <span>Action executed</span>
-        </div>
-        <div class="loop-item-connector"></div>
-        <div class="loop-item">
-          <span class="loop-item-icon">◈</span>
-          <span>farscry diffs before -> after</span>
-        </div>
-        <div class="loop-item-connector"></div>
-        <div class="loop-item">
-          <span class="loop-item-icon">OK</span>
-          <span>Structured delta: only what changed</span>
-        </div>
-        <div class="loop-item-connector"></div>
-        <div class="loop-item">
-          <span class="loop-item-icon">◈</span>
-          <span>Workflow reads result</span>
-        </div>
+    <div class="diff-track diff-track--good">
+      <span class="diff-track-who">farscry</span>
+      <div class="diff-steps">
+        <span class="diff-step">action</span>
+        <span class="diff-arr">→</span>
+        <span class="diff-step diff-step--good">farscry diff</span>
+        <span class="diff-arr">→</span>
+        <span class="diff-step diff-step--good">38ms</span>
+        <span class="diff-arr">→</span>
+        <span class="diff-step">read result</span>
       </div>
-      <div class="loop-cost loop-cost-good">38ms · $0 · saves 30-40% of visual token budget</div>
+      <span class="diff-track-price">$0</span>
     </div>
   </div>
 </section>
@@ -1102,33 +1101,59 @@
   <h2>One binary. Three ways to use it.</h2>
   <p class="section-sub">Runs local for all three. No server, no GPU, no account.</p>
 
-  <div class="cards">
-    <div class="card">
-      <div class="card-tag">mode 1 - describe</div>
-      <h3>Any image -> coordinates</h3>
-      <p>Capture once, pipe anywhere - to MCP clients or any CLI tool. The output is typed elements with exact pixel coordinates, not a description.</p>
-      <div class="card-code">
-        $ farscry screen.png<br />
-        -> button  "Save"       at (400,300)  enabled:true<br />
-        -> input   "Email"      at (200,180)  empty:true<br />
-        -> error   "Card declined"  at (20,350)
+  <!-- Mode 1 — DOMINANT: full-width, the code is the product -->
+  <div class="mode-primary">
+    <div class="mode-primary-header">
+      <span class="mode-tag">mode 1 — describe</span>
+      <span class="mode-primary-title">Any image → typed coordinates</span>
+    </div>
+    <p class="mode-primary-desc">The output is typed UI elements with exact pixel coordinates — not a description. Pipe to any agent, MCP client, or CLI tool.</p>
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="dot dot-r"></span>
+        <span class="dot dot-y"></span>
+        <span class="dot dot-g"></span>
+        <span class="terminal-title">farscry checkout.png</span>
+      </div>
+      <div class="vasp-term-body">
+        <span class="tl"><span class="cmd">$ farscry checkout.png</span></span>
+        <span class="tl"><span class="sec">=== farscry visual context ===</span></span>
+        <span class="tl"><span class="k">screen_type:</span> <span class="s">form</span></span>
+        <span class="tl"><span class="d">---</span></span>
+        <span class="tl">&nbsp;</span>
+        <span class="tl"><span class="pos">[top-center]</span>  <span class="k">heading</span>  <span class="s">"Checkout"</span>                  <span class="d">at (400,80)</span></span>
+        <span class="tl"><span class="pos">[mid-center]</span>  <span class="k">input</span>    <span class="s">"Name"</span>          value=<span class="s">""</span>      <span class="changed">empty:true</span>    <span class="d">at (340,180)</span></span>
+        <span class="tl"><span class="pos">[mid-center]</span>  <span class="k">input</span>    <span class="s">"Card number"</span>   value=<span class="s">""</span>      <span class="changed">empty:true</span>    <span class="d">at (340,240)</span></span>
+        <span class="tl"><span class="pos">[mid-center]</span>  <span class="k">input</span>    <span class="s">"Expiry"</span>        value=<span class="s">"12/26"</span>               <span class="d">at (260,300)</span></span>
+        <span class="tl"><span class="pos">[mid-right]</span>   <span class="k">input</span>    <span class="s">"CVV"</span>           value=<span class="s">"···"</span>    <span class="d">masked:true</span>   <span class="d">at (480,300)</span></span>
+        <span class="tl"><span class="pos">[bottom]</span>      <span class="k">button</span>   <span class="s">"Pay $24.99"</span>                        <span class="appeared">enabled:true</span>  <span class="d">at (400,420)</span></span>
+        <span class="tl"><span class="pos">[bottom]</span>      <span class="k">button</span>   <span class="s">"Cancel"</span>                            <span class="appeared">enabled:true</span>  <span class="d">at (400,470)</span></span>
+        <span class="tl">&nbsp;</span>
+        <span class="tl"><span class="sec">affordances:</span></span>
+        <span class="tl">  <span class="changed">type</span>  <span class="punc">→</span> <span class="s">"Name"</span>           <span class="d">at (340,180)</span></span>
+        <span class="tl">  <span class="changed">type</span>  <span class="punc">→</span> <span class="s">"Card number"</span>    <span class="d">at (340,240)</span></span>
+        <span class="tl">  <span class="changed">click</span> <span class="punc">→</span> <span class="s">"Pay $24.99"</span>     <span class="d">at (400,420)</span></span>
       </div>
     </div>
-    <div class="card">
-      <div class="card-tag">mode 2 - diff</div>
-      <h3>What changed between states</h3>
-      <p>Run before and after an action. Get only what changed: which button flipped state, which field appeared, what error resolved. Deterministic. Offline. ~175 tokens avg.</p>
+  </div>
+
+  <!-- Modes 2 + 3 — secondary pair -->
+  <div class="mode-pair">
+    <div class="mode-secondary">
+      <span class="mode-tag">mode 2 — diff</span>
+      <span class="mode-secondary-title">What changed between states</span>
+      <p>Run before and after an action. Get only the delta — no re-upload, no full image cost.</p>
       <div class="card-code">
-        farscry diff before.png after.png<br />
-        -> button "Submit": disabled -> enabled<br />
-        -> spinner: removed
+        $ farscry diff before.png after.png<br />
+        → button "Submit": disabled → enabled<br />
+        → spinner: removed
       </div>
     </div>
-    <div class="card">
-      <div class="card-tag">mode 3 - pipe</div>
-      <h3>Cmd+Shift+4, pipe, done</h3>
-      <p>Capture a region with your system hotkey. Pipe directly to your workflow. Zero file saving. Zero path typing. Zero friction between seeing a problem and fixing it.</p>
-      <div class="card-code">farscry --from-clipboard | your-runner "fix this"</div>
+    <div class="mode-secondary">
+      <span class="mode-tag">mode 3 — pipe</span>
+      <span class="mode-secondary-title">Cmd+Shift+4, pipe, done</span>
+      <p>Capture a region. Pipe straight to your agent. Zero files. Zero friction.</p>
+      <div class="card-code">farscry --from-clipboard | claude "fix this"</div>
     </div>
   </div>
 </section>
@@ -1137,40 +1162,34 @@
 
 <!-- ═══════════════ INSTALL ═══════════════ -->
 <section id="install">
+  <div class="section-label">Install</div>
   <h2>Up in 30 seconds.</h2>
-  <p class="section-sub">OCR assets (~12MB English) download to <code style="font-family:var(--mono);font-size:0.875em;color:var(--accent-high)">~/.farscry/models/</code> on first run. No account needed.</p>
 
-  <div class="install-ways">
-    <div class="install-way">
-      <h3>Auto-setup</h3>
-      <p>Detects MCP clients and compatible editors automatically. Asks permission, then wires farscry into your workflow image pipeline in 30 seconds.</p>
-      <div class="card-code">farscry setup</div>
-    </div>
-    <div class="install-way">
-      <h3>Clipboard shortcut</h3>
-      <p>Cmd+Shift+4 to capture a region, then paste into your workflow. farscry turns the image into structured context before the workflow has to reason over pixels.</p>
-      <div class="card-code">farscry --from-clipboard</div>
-    </div>
-    <div class="install-way">
-      <h3>MCP server</h3>
-      <p>Expose farscry as an MCP tool. Your workflow calls it directly when it needs to understand an image, with no manual piping required.</p>
-      <div class="card-code">farscry serve --mcp</div>
+  <div class="install-single">
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="dot dot-r"></span>
+        <span class="dot dot-y"></span>
+        <span class="dot dot-g"></span>
+        <span class="terminal-title">terminal</span>
+      </div>
+      <div class="install-cmd-body">
+        <div><span class="install-prompt">$</span><span class="install-cmd-text">npm install -g farscry</span></div>
+        <div><span class="install-prompt">$</span><span class="install-cmd-text">farscry setup</span></div>
+      </div>
     </div>
   </div>
 
-  <div class="code-block">
-    <span class="c"># npm (TypeScript / Node.js)</span><br />
-    <span class="cm">npm install -g farscry</span>
-    <br /><br />
-    <span class="c"># pip (Python)</span><br />
-    <span class="cm">pip install farscry</span>
-    <br /><br />
-    <span class="c"># curl (any platform)</span><br />
-    <span class="cm">curl -fsSL https:
-    <br /><br />
-    <span class="c"># then: auto-detect MCP clients, wire up in 30 seconds</span><br />
-    <span class="cm">farscry setup</span>
+  <div class="install-alts">
+    or:
+    <a href="/docs/sdk/pip">pip install farscry</a>
+    &nbsp;·&nbsp;
+    <a href="https://farscry.dev/install">curl -fsSL https://farscry.dev/install | sh</a>
   </div>
+
+  <p class="install-note">
+    Models (~12MB English) download to <code>~/.farscry/models/</code> on first run. No account needed.
+  </p>
 </section>
 
 <hr class="divider" />
