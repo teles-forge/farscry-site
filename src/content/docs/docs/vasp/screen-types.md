@@ -25,24 +25,18 @@ state_id: phash:<16-char-hex>
 screen_type: error
 confidence: high
 lang: eng
-workflow_context: "Payment error - card declined, retry available"
-error_message: "Payment failed - card declined"
-error_code: "ERR_402"
-component: "Checkout"
-suggested_action: "Retry with a different card"
+agent_context: "Payment error - card declined, retry available"
+
+ui_tree:
+  [top-center]    error   "Payment failed - card declined"
+  [middle-center] label   "ERR_402"
+  [bottom-center] button  "Retry"  enabled: true
+  [bottom-right]  button  "Back"   enabled: true
+
 affordances:
   - click: "Retry" enabled: true
   - click: "Back"  enabled: true
 ```
-
-**Extra fields:**
-
-| Field | Description |
-|---|---|
-| `error_message` | The full error message text |
-| `error_code` | Error code if present |
-| `component` | UI component where the error occurred |
-| `suggested_action` | farscry's suggested next action |
 
 `config`
 
@@ -53,12 +47,14 @@ state_id: phash:<16-char-hex>
 screen_type: config
 confidence: high
 lang: eng
-workflow_context: "Payment Settings - 3 editable fields, Save available"
-section: "Payment Settings"
+agent_context: "Payment Settings - 3 editable fields, Save available"
+
 ui_tree:
-  label "Max Value"  | input value="1500"  editable: true
-  label "Status"     | badge "Active"      state: success
-  label "Period"     | select "Monthly"    editable: true
+  heading "Payment Settings"
+  label "Max Value"  | input value="1500"  enabled: true
+  label "Status"     | badge "Active"
+  label "Period"     | select "Monthly"    enabled: true
+
 affordances:
   - type:  input "Max Value"   current: "1500"
   - click: select "Period"     options: [Monthly, Annual]
@@ -74,22 +70,13 @@ state_id: phash:<16-char-hex>
 screen_type: terminal
 confidence: high
 lang: eng
-workflow_context: "Build failed - connection refused at net.js:1724"
-shell: bash
-exit_code: 1
-content: |
-  Error: connection refused
-  at Server.listen (net.js:1724)
-  at Object.<anonymous> (server.js:42)
+agent_context: "Build failed - connection refused at net.js:1724"
+
+ui_tree:
+  [top-left] error "Error: connection refused"
+  [top-left] label "at Server.listen (net.js:1724)"
+  [top-left] label "at Object.<anonymous> (server.js:42)"
 ```
-
-**Extra fields:**
-
-| Field | Description |
-|---|---|
-| `shell` | Detected shell type (bash, zsh, powershell, etc.) |
-| `exit_code` | Exit code if visible in the terminal |
-| `content` | Raw terminal content |
 
 `conversation`
 
@@ -100,21 +87,14 @@ state_id: phash:<16-char-hex>
 screen_type: conversation
 confidence: high
 lang: eng
-workflow_context: "Support conversation - customer reporting kiosk error 503"
-platform: whatsapp
-messages:
-  support  | "How can I help you today?"
-  customer | "My kiosk is not working"
-  support  | "What error are you seeing?"
-  customer | "Screen goes black with code 503"
+agent_context: "Support conversation - customer reporting kiosk error 503"
+
+ui_tree:
+  [top-left]    label "How can I help you today?"
+  [middle-left] label "My kiosk is not working"
+  [middle-left] label "What error are you seeing?"
+  [bottom-left] label "Screen goes black with code 503"
 ```
-
-**Extra fields:**
-
-| Field | Description |
-|---|---|
-| `platform` | Detected platform (whatsapp, slack, teams, etc.) |
-| `messages` | Structured message list with speaker labels |
 
 `ui`
 
@@ -127,7 +107,7 @@ state_id: phash:<16-char-hex>
 screen_type: ui
 confidence: medium
 lang: eng
-workflow_context: "Dashboard - 3 cards, navigation visible"
+agent_context: "Dashboard - 3 cards, navigation visible"
 
 ui_tree:
   nav     [Home, Orders, Settings]
@@ -146,11 +126,13 @@ state_id: phash:<16-char-hex>
 screen_type: unknown
 confidence: none
 lang: eng
-workflow_context: "Unclassified screen - raw text extracted"
-raw_text: "all extracted text without structure"
+agent_context: "Unclassified screen - raw text extracted"
+
+ui_tree:
+  [top-left] label "all extracted text without structure"
 ```
 
-Fallback when classification fails. Always returns `raw_text` and `state_id`.
+Fallback when classification fails. Always returns `agent_context` and `state_id`.
 
 Confidence levels
 
