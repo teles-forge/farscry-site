@@ -17,12 +17,6 @@ export default defineConfig({
         { icon: 'github', label: 'GitHub', href: 'https://github.com/teles-forge/farscry' },
       ],
       customCss: ['./src/styles/custom.css'],
-      head: [
-        {
-          tag: 'script',
-          content: "(function(){function i(){document.querySelectorAll('.expressive-code .frame .header:not([data-dots])').forEach(function(h){h.setAttribute('data-dots','1');var w=document.createElement('span');w.setAttribute('aria-hidden','true');w.style.cssText='display:inline-flex;align-items:center;gap:6px;flex-shrink:0;flex-grow:0;';['#ff5f57','#febc2e','#28c840'].forEach(function(c){var d=document.createElement('span');d.style.cssText='display:inline-block;width:12px;height:12px;border-radius:50%;background:'+c+';border:0;outline:0;box-shadow:none;padding:0;margin:0;flex-shrink:0;';d.style.setProperty('background',c,'important');d.style.setProperty('border','0','important');d.style.setProperty('box-shadow','none','important');d.style.setProperty('outline','0','important');w.appendChild(d);});h.insertBefore(w,h.firstChild);h.style.cssText='display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-start!important;width:100%!important;background:#16161a!important;border-bottom:1px solid rgba(255,255,255,.07)!important;padding:.625rem 1rem!important;gap:.5rem!important;box-sizing:border-box!important;';});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',i);}else{i();}document.addEventListener('astro:page-load',i);})();",
-        },
-      ],
       editLink: {
         baseUrl: 'https://github.com/teles-forge/farscry/edit/main/site/',
       },
