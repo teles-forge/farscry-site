@@ -104,32 +104,61 @@ import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
 5. **Pipe to an agent**
 
    ```bash
-   farscry screenshot.png | claude "fix this"
-   farscry --from-clipboard | devin "fix this"
-   farscry screen.png | codex "what broke"
+   farscry extract screen.png | claude -p "fix this"
+   farscry extract --from-clipboard | claude -p "fix this"
    ```
 
    farscry writes to stdout. Pipe anywhere.
 
 </Steps>
 
-## Zero-friction clipboard workflow
+## Zero-friction workflow
 
-The fastest way to use farscry is a shell alias that runs everything in one command.
-
-Add to your `~/.zshrc`:
+The fastest way to use farscry — one command, every time.
 
 ```bash
-echo "alias ffix='farscry --from-clipboard | claude \"fix this\"'" >> ~/.zshrc && source ~/.zshrc
+farscry setup
 ```
 
-Then:
-1. Take a screenshot with Shottr or `Cmd+Shift+4`
-2. Type: `ffix`
-3. Enter
+Detects claude, devin, codex, aider. Shows the alias to add and MCP config to paste.
 
-farscry reads the image from your clipboard, extracts VASP context, and pipes it to Claude.
-No file saving. No path typing. No friction.
+Then add the short alias:
+
+```bash
+echo "alias fp='farscry paste'" >> ~/.zshrc && source ~/.zshrc
+```
+
+Now: screenshot → `fp` → done.
+
+## Agent integrations
+
+### Claude Code
+```bash
+farscry extract screen.png | claude -p "fix this"
+farscry extract --from-clipboard | claude -p "fix this"
+```
+
+### Devin
+```bash
+devin -p "$(farscry extract screen.png) — fix this"
+devin -p "$(farscry extract --from-clipboard) — fix this"
+```
+
+### Codex
+```bash
+farscry extract screen.png | codex exec "fix this:"
+farscry extract --from-clipboard | codex exec "fix this:"
+```
+
+### MCP (all agents — recommended)
+```bash
+farscry serve --mcp
+```
+Supports multiple images via `image_paths` parameter.
+
+### Supported image formats
+PNG, JPEG, GIF, WEBP, TIFF — from clipboard, file, or stdin.
+From clipboard: Cmd+Shift+4, Shottr, or Cmd+C on an image file in Finder.
 
 ## Common flags
 
