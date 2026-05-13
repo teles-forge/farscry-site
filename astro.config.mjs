@@ -17,6 +17,12 @@ export default defineConfig({
         { icon: 'github', label: 'GitHub', href: 'https://github.com/teles-forge/farscry' },
       ],
       customCss: ['./src/styles/custom.css'],
+      head: [
+        {
+          tag: 'script',
+          content: "(function(){function i(){document.querySelectorAll('.expressive-code .frame .header:not([data-dots])').forEach(function(h){h.setAttribute('data-dots','1');var w=document.createElement('span');w.setAttribute('aria-hidden','true');w.style.cssText='display:inline-flex;align-items:center;gap:6px;flex-shrink:0;margin-right:8px;';['#ff5f57','#ffbd2e','#28c840'].forEach(function(c){var d=document.createElement('span');d.style.cssText='display:inline-block;width:12px;height:12px;border-radius:50%;background:'+c+';flex-shrink:0;';w.appendChild(d);});h.insertBefore(w,h.firstChild);h.style.cssText='display:flex!important;align-items:center!important;background:#16161a!important;border-bottom:1px solid rgba(255,255,255,.07)!important;padding:.625rem 1rem!important;gap:.5rem!important;';});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',i);}else{i();}document.addEventListener('astro:page-load',i);})();",
+        },
+      ],
       editLink: {
         baseUrl: 'https://github.com/teles-forge/farscry/edit/main/site/',
       },
