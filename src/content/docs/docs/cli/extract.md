@@ -3,52 +3,57 @@ title: farscry extract
 description: Convert a screenshot into structured VASP context.
 ---
 
-The default command. Converts any screenshot into a typed VASP output with screen classification, UI tree, and affordances.
+Converts any screenshot into a typed VASP output with screen classification, UI tree, and affordances.
 
 Usage
 
 ```bash
-farscry <image>
-farscry <image> [options]
-cat <image> | farscry
+farscry extract <image>
+farscry extract <image> [options]
+cat <image> | farscry extract
+farscry extract --from-clipboard
 ```
 
 Examples
 
 ```bash
-Single image
-farscry screenshot.png
+# Single image
+farscry extract screenshot.png
 
-From stdin
-cat screenshot.png | farscry
+# From stdin
+cat screenshot.png | farscry extract
 
-Batch - parallel processing via rayon
-farscry *.png
-farscry img1.png img2.png img3.png
+# From clipboard (Cmd+Shift+4 on macOS)
+farscry extract --from-clipboard
 
-JSON output
-farscry screenshot.png --json
+# Batch — parallel processing
+farscry extract *.png
+farscry extract img1.png img2.png img3.png
 
-Save to file
-farscry screenshot.png -o context.vasp
+# JSON output
+farscry extract screenshot.png --json
 
-Affordances only
-farscry screenshot.png --affordances
+# Save to file
+farscry extract screenshot.png -o context.vasp
 
-One-line workflow context
-farscry screenshot.png --context
+# Affordances only
+farscry extract screenshot.png --affordances
 
-Explicit language
-farscry screenshot.png --lang por
+# One-line agent_context summary
+farscry extract screenshot.png --context
 
-Multi-language
-farscry screenshot.png --lang eng+por
+# Explicit language
+farscry extract screenshot.png --lang por
+
+# Multi-language
+farscry extract screenshot.png --lang eng+por
 ```
 
 Options
 
 | Flag | Default | Description |
 |---|---|---|
+| `--from-clipboard` | false | Read image from system clipboard |
 | `--json` | false | Output JSON instead of VASP |
 | `-o <file>` | stdout | Write output to file |
 | `--affordances` | false | Output only interactive elements |
@@ -56,7 +61,7 @@ Options
 | `--text-only` | false | Suppress image forwarding to workflow |
 | `--lang <code>` | auto | Force language (e.g. `eng`, `por`, `eng+por`) |
 | `--max-size <n>mb` | 10mb | Override 10MB input size limit |
-| `-v` | false | Verbose - show processing steps |
+| `-v` | false | Verbose — show processing steps |
 | `--debug` | false | Full debug output to stderr |
 
 Output format
@@ -64,20 +69,20 @@ Output format
 See [VASP Overview](/docs/vasp/overview) for the full schema.
 
 ```
-vasp_version: 1.0
-schema_version: 1
+=== farscry visual context ===
+screen_type: config
 state_id: phash:<16-char-hex>
-delta_from: null
-screen_type: error|config|terminal|conversation|ui|unknown
-confidence: high|medium|low|none
+confidence: high
 lang: eng
 agent_context: "<one-line summary>"
-
-ui_tree:
-  ...
+---
+[top-center]   heading  "Payment Settings"
+[middle-right] button   "Save Changes"   enabled:true
+[bottom]       error    "Value must be ≤ 10000"
 
 affordances:
-  ...
+  click → "Save Changes"  at (400,300)
+  type  → "Max Value"     at (200,120)
 ```
 
 Supported input formats
@@ -88,8 +93,9 @@ Supported input formats
 | JPEG | `FF D8 FF` |
 | WebP | `52 49 46 46` |
 | GIF | `47 49 46 38` |
+| TIFF | `49 49 2A 00` / `4D 4D 00 2A` |
 
-Input validation uses magic bytes - file extension is ignored.
+Input validation uses magic bytes — file extension is ignored.
 
 Exit codes
 

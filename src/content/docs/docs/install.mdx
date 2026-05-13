@@ -121,7 +121,7 @@ Gnome Terminal, Windows Terminal).
 After installing, add the `ffix` alias for zero-friction clipboard workflow:
 
 ```bash
-echo "alias ffix='farscry --from-clipboard | claude \"fix this\"'" >> ~/.zshrc && source ~/.zshrc
+echo "alias ffix='farscry extract --from-clipboard | claude \"fix this\"'" >> ~/.zshrc && source ~/.zshrc
 ```
 
 Now: screenshot -> `ffix` -> Claude fixes it.
