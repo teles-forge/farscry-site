@@ -109,11 +109,11 @@ farscry's `state_id` (perceptual hash) enables loop detection in automation work
 
 ```bash
 farscry screen.png --context
-Payment settings — Save available
+Payment settings, Save available
 ```
 
 For `state_id`, run `farscry screen.png` without `--context`.
 
-If the same `state_id` appears twice, the workflow is in a loop — the action had no effect.
+If the same `state_id` appears twice, the workflow is in a loop, the action had no effect.
 
 farscry supports this to detect when an action had no effect and bail out early.

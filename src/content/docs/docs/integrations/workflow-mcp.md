@@ -40,9 +40,9 @@ Or add to your agent's MCP config manually:
 }
 ```
 
-**Cursor** (`~/.cursor/mcp.json`) — same config.
+**Cursor** (`~/.cursor/mcp.json`), same config.
 
-**Windsurf** (`~/.windsurf/mcp.json`) — same config.
+**Windsurf** (`~/.windsurf/mcp.json`), same config.
 
 The MCP host starts the farscry server when the session begins and keeps OCR engines warm for the duration.
 

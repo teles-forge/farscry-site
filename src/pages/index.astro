@@ -1094,7 +1094,7 @@
     <div class="feature-desc">
       <div class="section-label">Coordinate Extraction</div>
       <h2>Coordinates, not captions</h2>
-      <p>Screenshot tooling returns descriptions. Workflows guess where to click, miss the target, and fail. OSWorld data shows <strong style="color:var(--text)">58% of visual automation failures trace back to wrong coordinates</strong> — not wrong decisions.</p>
+      <p>Screenshot tooling returns descriptions. Workflows guess where to click, miss the target, and fail. OSWorld data shows <strong style="color:var(--text)">58% of visual automation failures trace back to wrong coordinates</strong>, not wrong decisions.</p>
       <p>farscry returns typed elements with exact pixel coordinates. The workflow knows the button is at (400,300). It clicks. It succeeds.</p>
       <p>Screenshot, error printout, Figma export, phone photo of a screen. Offline. No GPU.</p>
     </div>
@@ -1265,10 +1265,10 @@
   
   <div class="mode-primary">
     <div class="mode-primary-header">
-      <span class="mode-tag">mode 1 — describe</span>
+      <span class="mode-tag">mode 1: describe</span>
       <span class="mode-primary-title">Any image → typed coordinates</span>
     </div>
-    <p class="mode-primary-desc">The output is typed UI elements with exact pixel coordinates — not a description. Pipe to any agent, MCP client, or CLI tool.</p>
+    <p class="mode-primary-desc">The output is typed UI elements with exact pixel coordinates, not a description. Pipe to any agent, MCP client, or CLI tool.</p>
     <div class="terminal">
       <div class="terminal-bar">
         <span class="dot dot-r"></span>
@@ -1301,11 +1301,11 @@
   
   <div class="mode-block">
     <div class="mode-primary-header">
-      <span class="mode-tag">mode 2 — diff</span>
+      <span class="mode-tag">mode 2: diff</span>
       <span class="mode-primary-title">After every action, only what changed</span>
     </div>
     <p class="mode-primary-desc">
-      In MCP mode, the daemon tracks state automatically — no extra command needed.
+      In MCP mode, the daemon tracks state automatically, no extra command needed.
       After each <code style="font-family:var(--mono);font-size:0.875em;color:var(--accent-high)">farscry_extract</code> call,
       the next call returns what changed since the last one.
       Via CLI, pass two screenshots directly.
@@ -1334,7 +1334,7 @@
         <span class="tl"><span class="removed">- removed:</span></span>
         <span class="tl">  <span class="d">spinner  at (450,200)</span></span>
         <span class="tl">&nbsp;</span>
-        <span class="tl"><span class="d">— 38ms · 3 of 12 elements changed</span></span>
+        <span class="tl"><span class="d">, 38ms · 3 of 12 elements changed</span></span>
       </div>
     </div>
   </div>
@@ -1342,7 +1342,7 @@
   
   <div class="mode-lone">
     <div class="mode-secondary">
-      <span class="mode-tag">mode 3 — pipe</span>
+      <span class="mode-tag">mode 3: pipe</span>
       <span class="mode-secondary-title">Cmd+Shift+4, pipe, done</span>
       <p>Capture a region with your system shortcut. Pipe straight to your agent. Zero files. Zero friction.</p>
       <div class="card-code">farscry --from-clipboard | claude "fix this"</div>
