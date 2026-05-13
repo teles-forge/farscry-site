@@ -1183,7 +1183,7 @@
         <span class="compare-from">~2-5s</span>
         <span class="compare-arr">→</span>
         <span class="compare-to">38ms</span>
-        <span class="compare-mult">~100×</span>
+        <span class="compare-mult">65–130×</span>
       </div>
     </div>
 
@@ -1500,12 +1500,22 @@ fp</div>
 
   const CMD = '$ farscry extract screen.png';
   const OUTPUT = [
-    '<span class="d">\u2192</span> <span class="k">button</span>  <span class="s">"Save"</span>           <span class="d">at (400,300)</span>  <span class="appeared">enabled:true</span>',
-    '<span class="d">\u2192</span> <span class="k">button</span>  <span class="s">"Cancel"</span>         <span class="d">at (500,300)</span>  <span class="appeared">enabled:true</span>',
-    '<span class="d">\u2192</span> <span class="k">input</span>   <span class="s">"Card number"</span>    <span class="d">at (300,200)</span>  <span class="changed">empty:true</span>',
-    '<span class="d">\u2192</span> <span class="k">input</span>   <span class="s">"Expiry date"</span>    <span class="d">at (300,250)</span>  <span class="changed">empty:true</span>',
-    '<span class="d">\u2192</span> <span class="k">input</span>   <span class="s">"CVV"</span>            <span class="d">at (420,250)</span>  <span class="changed">empty:true</span>',
-    '<span class="d">\u2192</span> <span class="k">text</span>    <span class="s">"Amount"</span>         <span class="d">at (300,150)</span>  <span class="s">value:"$24.99"</span>',
+    '<span class="sec">=== farscry visual context ===</span>',
+    '<span class="k">source:</span> <span class="d">screen.png</span>',
+    '<span class="k">screen_type:</span> <span class="s">config</span>',
+    '<span class="k">state_id:</span> <span class="d">phash:8f4a2c9d1e3b7f6a</span>',
+    '<span class="k">confidence:</span> <span class="s">high</span>',
+    '<span class="k">agent_context:</span> <span class="s">"Payment settings - Save available"</span>',
+    '<span class="d">---</span>',
+    '&nbsp;',
+    '<span class="pos">[middle-right]</span>  <span class="k">button</span>  <span class="s">"Save Changes"</span>  <span class="appeared">enabled:true</span>',
+    '<span class="pos">[middle-center]</span> <span class="k">input</span>   <span class="s">"Card number"</span>   <span class="changed">empty:true</span>',
+    '<span class="pos">[middle-center]</span> <span class="k">input</span>   <span class="s">"Expiry"</span>        <span class="d">value:"12/26"</span>',
+    '<span class="pos">[bottom]</span>        <span class="removed">error</span>   <span class="s">"Value must be \u2264 10000"</span>',
+    '&nbsp;',
+    '<span class="sec">affordances:</span>',
+    '  <span class="changed">click</span> <span class="punc">\u2192</span> <span class="s">"Save Changes"</span> <span class="d">at (400,300)</span>  <span class="appeared">enabled:true</span>',
+    '  <span class="changed">type</span>  <span class="punc">\u2192</span> <span class="s">"Card number"</span>  <span class="d">at (300,200)</span>  <span class="d">current:""</span>',
   ];
 
   function sleep(ms) {
