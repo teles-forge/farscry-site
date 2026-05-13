@@ -1352,7 +1352,11 @@
       <span class="mode-tag">mode 3: pipe</span>
       <span class="mode-secondary-title">Cmd+Shift+4, pipe, done</span>
       <p>Capture a region with your system shortcut. Pipe straight to your agent. Zero files. Zero friction.</p>
-      <div class="card-code">farscry --from-clipboard | claude "fix this"</div>
+      <div class="card-code"># Add once:
+echo "alias ffix='farscry --from-clipboard | claude \"fix this\"'" >> ~/.zshrc
+
+# Then forever:
+ffix</div>
     </div>
   </div>
 </section>

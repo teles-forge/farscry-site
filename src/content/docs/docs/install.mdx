@@ -105,6 +105,16 @@ English is built in. Additional languages are downloaded on demand:
 
 See [Language Management](/docs/cli/install-lang) for the full reference.
 
+## Recommended: clipboard alias
+
+After installing, add the `ffix` alias for zero-friction clipboard workflow:
+
+```bash
+echo "alias ffix='farscry --from-clipboard | claude \"fix this\"'" >> ~/.zshrc && source ~/.zshrc
+```
+
+Now: screenshot -> `ffix` -> Claude fixes it.
+
 Security note
 
 Model downloads use HTTPS with SHA256 verification. The binary never contacts any external API during image processing - it is fully offline after the initial model download.
