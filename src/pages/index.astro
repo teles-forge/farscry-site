@@ -827,28 +827,30 @@
     .cost-line--good .cost-line-val  { color: #fafafa; }
 
     /* ─────────── DIFF: FLOWING TIMELINE ─────────── */
-    .diff-timeline { margin-top: 0; }
+    .diff-timeline { display: flex; flex-direction: column; gap: 0.625rem; }
     .diff-track {
       display: flex; align-items: center; gap: 1rem;
-      padding: 1.25rem 0;
-      border-bottom: 1px solid var(--border-soft);
+      padding: 1.25rem 1.5rem;
+      border-radius: 10px;
+      border: 1px solid var(--border-soft);
       flex-wrap: wrap;
     }
-    .diff-track:first-child { border-top: 1px solid var(--border-soft); }
+    .diff-track--bad  { background: rgba(248,113,113,0.04); }
+    .diff-track--good { background: rgba(34,197,94,0.05); border-color: rgba(34,197,94,0.15); }
     .diff-track-who {
-      font-family: var(--mono); font-size: 0.6875rem; font-weight: 600;
+      font-family: var(--mono); font-size: 0.75rem; font-weight: 700;
       text-transform: uppercase; letter-spacing: 0.1em;
-      width: 6rem; flex-shrink: 0;
+      width: 5.5rem; flex-shrink: 0;
     }
     .diff-track--bad  .diff-track-who { color: var(--text-dim); }
-    .diff-track--good .diff-track-who { color: var(--accent-high); }
+    .diff-track--good .diff-track-who { color: var(--success); }
     .diff-steps { display: flex; align-items: center; gap: 0.375rem; flex: 1; flex-wrap: wrap; }
     .diff-step { font-size: 0.9375rem; color: var(--text-muted); white-space: nowrap; }
-    .diff-step--bad { color: var(--danger); opacity: 0.8; }
+    .diff-step--bad { color: var(--danger); font-weight: 500; opacity: 0.9; }
     .diff-step--good { color: var(--success); font-weight: 600; }
     .diff-arr { color: var(--text-dim); font-size: 0.875rem; }
     .diff-track-price {
-      font-family: var(--mono); font-size: 0.8125rem;
+      font-family: var(--mono); font-size: 0.875rem; font-weight: 600;
       margin-left: auto; white-space: nowrap; flex-shrink: 0;
     }
     .diff-track--bad  .diff-track-price { color: var(--danger); }
@@ -874,12 +876,16 @@
       max-width: 600px; line-height: 1.65;
     }
     .mode-pair {
-      display: grid; grid-template-columns: 13fr 7fr; gap: 3rem;
+      display: grid; grid-template-columns: 13fr 7fr; gap: 2rem;
+      margin-top: 2rem; padding-top: 2rem;
+      border-top: 1px solid var(--border-soft);
     }
-    @media (max-width: 640px) { .mode-pair { grid-template-columns: 1fr; gap: 2rem; } }
+    @media (max-width: 640px) { .mode-pair { grid-template-columns: 1fr; gap: 1.5rem; } }
     .mode-secondary {
-      border-left: 2px solid rgba(99,102,241,0.35);
-      padding-left: 1.5rem;
+      background: rgba(255,255,255,0.025);
+      border-left: 3px solid rgba(99,102,241,0.55);
+      border-radius: 0 10px 10px 0;
+      padding: 1.375rem 1.375rem 1.375rem 1.5rem;
     }
     .mode-secondary-title {
       display: block; font-size: 1rem; font-weight: 600; color: var(--text);
