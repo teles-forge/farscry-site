@@ -171,19 +171,20 @@ header.header {
   align-items: center !important;
   gap: 0.5rem !important;
 }
-/* macOS traffic light dots — 3 circles via radial-gradient (no box-shadow clipping) */
+/* macOS traffic light dots — 3 circles via radial-gradient */
 .expressive-code .frame.has-title .header::before,
 .expressive-code .frame.is-terminal .header::before {
   content: '';
-  display: inline-block;
-  width: 52px;   /* 12 + 8gap + 12 + 8gap + 12 */
+  display: block;
+  flex: 0 0 52px;   /* never shrink: 12 + 8gap + 12 + 8gap + 12 */
   height: 12px;
-  flex-shrink: 0;
-  margin-right: 8px;
-  background:
-    radial-gradient(circle, #ff5f57 50%, transparent 51%) 0   0 / 12px 12px no-repeat,
-    radial-gradient(circle, #ffbd2e 50%, transparent 51%) 20px 0 / 12px 12px no-repeat,
-    radial-gradient(circle, #28c840 50%, transparent 51%) 40px 0 / 12px 12px no-repeat;
+  background-image:
+    radial-gradient(circle, #ff5f57 50%, transparent 51%),
+    radial-gradient(circle, #ffbd2e 50%, transparent 51%),
+    radial-gradient(circle, #28c840 50%, transparent 51%);
+  background-size:     12px 12px, 12px 12px, 12px 12px;
+  background-position: 0 0,       20px 0,    40px 0;
+  background-repeat:   no-repeat, no-repeat, no-repeat;
 }
 /* Filename / tab text */
 .expressive-code .frame .title {
