@@ -283,9 +283,16 @@
       display: flex; align-items: center; gap: 0.5rem;
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
-    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot {
+      display: block;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      border: none;
+      box-shadow: none;
+      flex-shrink: 0;
+    }
     .dot-r { background: #ff5f57; }
-    .dot-y { background: #ffbd2e; }
+    .dot-y { background: #febc2e; }
     .dot-g { background: #28c840; }
     .terminal-title {
       margin: 0 auto;
