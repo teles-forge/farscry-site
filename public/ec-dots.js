@@ -25,15 +25,16 @@
       /* Style the wrapper */
       wrap.style.cssText =
         'display:inline-flex;align-items:center;gap:6px;' +
-        'flex-shrink:0;margin-right:8px;';
+        'flex-shrink:0;flex-grow:0;';
 
       /* Insert before any existing content */
       header.insertBefore(wrap, header.firstChild);
 
-      /* Force the header itself to flex so dots and title sit side-by-side */
+      /* Force the header itself to flex-start so dots stay on the left */
       header.style.cssText =
-        'display:flex!important;align-items:center!important;' +
-        'background:#16161a!important;' +
+        'display:flex!important;flex-direction:row!important;' +
+        'align-items:center!important;justify-content:flex-start!important;' +
+        'width:100%!important;background:#16161a!important;' +
         'border-bottom:1px solid rgba(255,255,255,0.07)!important;' +
         'padding:0.625rem 1rem!important;' +
         'gap:0.5rem!important;box-sizing:border-box!important;';
