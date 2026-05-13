@@ -32,7 +32,7 @@ Converts a screenshot to VASP structured context.
 }
 ```
 
-**Returns:** Full VASP output - `screen_type`, `workflow_context`, `ui_tree`, `affordances`, `state_id`.
+**Returns:** Full VASP output - `screen_type`, `agent_context`, `ui_tree`, `affordances`, `state_id`.
 
 `farscry_diff`
 
