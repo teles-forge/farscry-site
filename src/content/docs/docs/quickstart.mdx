@@ -1,6 +1,6 @@
 ---
 title: Quick Start
-description: Extract structured context from a screenshot in 30 seconds.
+description: Extract structured coordinates from any screenshot in 30 seconds.
 ---
 
 import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
@@ -20,6 +20,16 @@ import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
      pip install farscry
      ```
      </TabItem>
+     <TabItem label="Homebrew">
+     ```bash
+     brew install teles-forge/tap/farscry
+     ```
+     </TabItem>
+     <TabItem label="cargo">
+     ```bash
+     cargo install farscry
+     ```
+     </TabItem>
      <TabItem label="curl">
      ```bash
      curl -fsSL https://farscry.dev/install | sh
@@ -27,7 +37,15 @@ import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
      </TabItem>
    </Tabs>
 
-2. **Extract from a screenshot**
+2. **Wire up your agent**
+
+   ```bash
+   farscry setup
+   ```
+
+   Detects Claude Code, Cursor, Windsurf, and Zed automatically. Shows the config snippet to paste — farscry never modifies your files.
+
+3. **Extract from a screenshot**
 
    ```bash
    farscry screenshot.png
@@ -36,28 +54,22 @@ import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
    Output:
 
    ```
-   vasp_version: 1.0
-   schema_version: 1
-   state_id: phash:a3f7c2b1d8e4f09c
-   delta_from: null
+   === farscry visual context ===
    screen_type: config
-   confidence: high
-   lang: eng
-   workflow_context: "Payment settings form - Save Changes button available"
+   ---
 
-   ui_tree:
-     heading  "Payment Settings"             (20, 20)
-     label    "Max Value"                    (20, 120)
-     input    value="1500"                   (200, 120)  editable: true
-     badge    "Active"                       (200, 160)  state: success
-     button   "Save Changes"                 (400, 300)  enabled: true
+   [top-left]   heading  "Payment Settings"
+   [mid-left]   label    "Max Value:"
+   [mid-center] input    value="1500"       editable:true   at (200,120)
+   [mid-right]  button   "Save Changes"     enabled:true    at (400,300)
+   [bottom]     error    "Value must be ≤ 10000"
 
    affordances:
-     - click: "Save Changes"   at (400, 300)  enabled: true
-     - type:  input "Max Value" at (200, 120)  current: "1500"
+     click → "Save Changes"   at (400,300)
+     type  → "Max Value"      at (200,120)   current:"1500"
    ```
 
-3. **Diff two screenshots**
+4. **Diff two screenshots**
 
    ```bash
    farscry diff before.png after.png
@@ -66,62 +78,62 @@ import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
    Output:
 
    ```
-   vasp_version: 1.0
-   diff_from: phash:8f4a2c3d...
-   diff_to:   phash:3d9b1e7a...
+   === farscry diff ===
+   from: phash:8f4a2c3d
+   to:   phash:3d9b1e7a
+   ---
 
-   delta:
-     appeared:
-       - error_banner: "Payment failed - card declined"
-       - button: "Retry" at (300, 420) enabled: true
-     changed:
-       - button: "Submit" text: "Submit" -> "Processing..." enabled: true -> false
-     removed:
-       - spinner at (450, 200)
-     unchanged:
-       - form_fields: [name, card, amount]
+   + appeared:
+     "error_banner"  "Card declined"   at (0,48)
+
+   ~ changed:
+     "Submit"   enabled:true → enabled:false
+
+   - removed:
+     spinner   at (450,200)
+
+   — 38ms · 3 of 12 elements changed
    ```
 
-4. **Pipe to an automation command**
+5. **Pipe to an agent**
 
    ```bash
-   farscry screenshot.png | your-runner "fix this"
+   farscry screenshot.png | claude "fix this"
+   farscry --from-clipboard | devin "fix this"
+   farscry screen.png | codex "what broke"
    ```
 
-   farscry outputs to stdout. Pipe anywhere.
+   farscry writes to stdout. Pipe anywhere.
 
 </Steps>
 
-Common flags
+## Common flags
 
 | Flag | Description |
 |---|---|
-| `--json` | JSON output instead of VASP |
+| `--json` | JSON output instead of VASP text |
 | `--affordances` | Show only interactive elements |
 | `--context` | One-line `workflow_context` summary |
-| `--lang por` | Explicit language |
-| `-v` | Verbose (processing steps) |
-| `--debug` | Full debug output |
+| `--lang por` | Explicit language (default: auto-detect) |
+| `-v` | Verbose — show processing steps |
 
-Limitations in v0.1.0
+## Known limitations in v0.1.0
 
 :::caution
-farscry is optimized for developer tool screenshots - terminals, config panels, web consoles, IDE output. Some use cases work less well.
+farscry is optimized for developer tool screenshots — terminals, config panels, web UIs, IDE output.
 :::
 
 | Scenario | Status | Notes |
 |---|---|---|
-| Text-heavy UI (terminal, config, forms) |  Works well | Core use case, 89%+ accuracy |
-| Icon-only toolbars (VS Code sidepanel) |  Partial | Buttons without text labels are missed |
-| Charts, graphs, images | No Not supported | OCR extracts no structured data |
-| PDFs | No Not supported | Convert first: `pdftoppm file.pdf page && farscry page-1.png` |
-| Animated GIFs |  First frame only | Full animation support in v0.4.0 |
-| `--from-clipboard` on Linux |  Requires `xclip` or `wl-clipboard` | Install with `apt install xclip` |
-| Windows |  Untested in v0.1.0 | Binary ships, not CI-validated yet |
+| Text-heavy UIs (terminal, config, forms) | Works well | Core use case |
+| Icon-only toolbars | Partial | Buttons without text labels are missed |
+| Charts, graphs, images | Not supported | OCR extracts no structured data |
+| `--from-clipboard` on Linux | Requires `xclip` | `apt install xclip` |
+| Windows | Untested in v0.1.0 | Binary ships, not CI-validated |
 
-Next steps
+## Next steps
 
-- [CLI Reference - extract](/docs/cli/extract)
-- [CLI Reference - diff](/docs/cli/diff)
-- [MCP Server](/docs/mcp) - keep OCR engines warm, integrate with MCP-compatible workflows
-- [VASP Format](/docs/vasp/overview) - understand the output schema
+- [CLI Reference — extract](/docs/cli/extract)
+- [CLI Reference — diff](/docs/cli/diff)
+- [MCP Server](/docs/mcp) — keep OCR warm, integrate with MCP-compatible agents
+- [VASP Format](/docs/vasp/overview) — the output schema

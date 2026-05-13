@@ -15,13 +15,12 @@ Listening on localhost:3333
 
 Why daemon mode
 
-| Mode | OCR load | Per-call overhead |
+| Mode | Apple Silicon | x86 |
 |---|---|---|
-| CLI (first run) | ~60ms | included |
-| CLI (cached OCR assets) | ~20ms | included |
-| `serve --mcp` | once at startup | eliminated |
+| CLI cold start | ~350ms | ~350ms |
+| `serve --mcp` warm | **38ms** | ~222ms |
 
-The daemon keeps PP-OCRv5 OCR engines warm in memory. Every subsequent `farscry_extract` or `farscry_diff` call consistently hits 150-180ms on Apple Silicon or ~120ms on x86.
+The daemon keeps OCR engines warm in memory. Every `farscry_extract` or `farscry_diff` call hits 38ms consistently on Apple Silicon (CoreML) once the server is running.
 
 Security
 

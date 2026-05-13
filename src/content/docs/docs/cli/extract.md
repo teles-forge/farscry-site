@@ -102,9 +102,9 @@ Exit codes
 
 Performance
 
-| Platform | Target latency |
-|---|---|
-| Apple Silicon M2+ (CoreML) | 180ms |
-| x86 CPU (ORT optimizations) | ~120ms |
+| Platform | Warm daemon | Cold CLI |
+|---|---|---|
+| Apple Silicon M-series (CoreML) | **38ms** | ~350ms |
+| x86 CPU (ORT) | ~222ms | ~350ms |
 
-First run downloads OCR assets (~12MB). Subsequent runs use the local cache. Use `farscry serve --mcp` to keep OCR engines warm and eliminate cold-start overhead.
+First run downloads OCR assets (~12MB). Subsequent runs use the local cache. Use `farscry serve --mcp` to keep OCR engines warm and hit the 38ms figure consistently.
