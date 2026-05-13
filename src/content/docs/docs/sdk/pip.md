@@ -44,7 +44,7 @@ With options
 vasp = extract('screenshot.png', lang='por', affordances=True)
 
 print(vasp['screen_type'])    # 'config'
-print(vasp['workflow_context'])  # "Payment settings - Save available"
+print(vasp['agent_context'])  # "Payment settings - Save available"
 print(vasp['affordances'])    # [...]
 ```
 
@@ -87,10 +87,9 @@ All functions return a `dict` parsed from the VASP JSON output:
     'screen_type': 'config',      # error|config|terminal|conversation|ui|unknown
     'confidence': 'high',          # high|medium|low|none
     'lang': 'eng',
-    'workflow_context': '...',
+    'agent_context': '...',
     'ui_tree': [...],
     'affordances': [...]
-    screen-type-specific fields
 }
 ```
 
