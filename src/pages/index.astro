@@ -1430,23 +1430,26 @@
         <span class="dot dot-r"></span>
         <span class="dot dot-y"></span>
         <span class="dot dot-g"></span>
-        <span class="terminal-title">farscry diff before.png after.png</span>
+        <span class="terminal-title">farscry setup</span>
       </div>
       <div class="vasp-term-body">
-        <span class="tl"><span class="cmd">$ farscry diff before.png after.png</span></span>
-        <span class="tl"><span class="sec">=== farscry diff ===</span></span>
-        <span class="tl"><span class="k">from:</span> <span class="d">phash:8f4a2c3d</span></span>
-        <span class="tl"><span class="k">to:</span>   <span class="d">phash:3d9b1e7a</span></span>
-        <span class="tl"><span class="d">---</span></span>
+        <span class="tl"><span class="cmd">$ farscry setup</span></span>
+        <span class="tl"><span class="d">farscry v0.1.0</span></span>
         <span class="tl">&nbsp;</span>
-        <span class="tl"><span class="appeared">+ appeared:</span></span>
-        <span class="tl">  <span class="s">"error_banner"</span>  <span class="s">"Card declined"</span>  <span class="d">at (0,48)</span></span>
+        <span class="tl"><span class="appeared">Detected: Claude Code, Cursor</span></span>
         <span class="tl">&nbsp;</span>
-        <span class="tl"><span class="changed">~ changed:</span></span>
-        <span class="tl">  <span class="s">"Submit"</span>  <span class="d">enabled:true -> enabled:false</span></span>
+        <span class="tl"><span class="sec">── Claude Code ──</span></span>
+        <span class="tl"><span class="k">Config file:</span> <span class="d">~/.claude/mcp.json</span></span>
+        <span class="tl"><span class="d">{</span></span>
+        <span class="tl">  <span class="s">"mcpServers"</span><span class="d">: {</span></span>
+        <span class="tl">    <span class="s">"farscry"</span><span class="d">: {</span></span>
+        <span class="tl">      <span class="k">"command"</span><span class="d">:</span> <span class="s">"farscry"</span><span class="d">,</span></span>
+        <span class="tl">      <span class="k">"args"</span><span class="d">:</span> <span class="s">["serve", "--mcp"]</span></span>
+        <span class="tl">    <span class="d">}</span></span>
+        <span class="tl">  <span class="d">}</span></span>
+        <span class="tl"><span class="d">}</span></span>
         <span class="tl">&nbsp;</span>
-        <span class="tl"><span class="removed">- removed:</span></span>
-        <span class="tl">  <span class="d">spinner  at (450,200)</span></span>
+        <span class="tl"><span class="d">farscry never modifies your config files automatically.</span></span>
       </div>
     </div>
   </div>
