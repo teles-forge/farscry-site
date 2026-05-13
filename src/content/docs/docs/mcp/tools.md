@@ -55,7 +55,7 @@ Returns the semantic delta between two screenshots.
 }
 ```
 
-**Returns:** VASP diff output - `delta.appeared`, `delta.changed`, `delta.removed`, `delta.unchanged`.
+**Returns:** VASP diff output — `entries` array of `DeltaEntry` items, each typed as `appeared`, `changed`, `removed`, or `unchanged`. Also includes `context_similarity`, `context_changed`, `agent_context`, and `tokens_saved`.
 
 Workflow usage
 

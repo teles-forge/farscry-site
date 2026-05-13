@@ -3,7 +3,7 @@ title: Affordances
 description: Every interactive element and its current state. Workflows know what they can do, not just what is visible.
 ---
 
-Affordances list everything an workflow can do on the current screen - pre-computed from the `ui_tree`. No grounding step needed.
+Affordances list everything a workflow can do on the current screen - pre-computed from the `ui_tree`. No grounding step needed.
 
 ```
 affordances:
@@ -51,11 +51,11 @@ affordances:
 Requesting affordances
 
 ```bash
-Include affordances in standard output (default: true with MCP)
+# Include affordances in full VASP output
 farscry extract screenshot.png --affordances
 
-Affordances only (skip ui_tree and other fields)
-farscry extract screenshot.png --affordances --context
+# One-line agent summary only (no affordances or ui_tree)
+farscry extract screenshot.png --context
 ```
 
 In automation workflows

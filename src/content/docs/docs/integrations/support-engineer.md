@@ -90,8 +90,22 @@ Graceful degradation
 farscry failure **never blocks the customer**. If the binary fails for any reason, the message is sent without VASP context. No error surfaces to the end user.
 
 ```java
-
-
+public String enrichWithVasp(String imagePath, String originalMessage) {
+    try {
+        ProcessBuilder pb = new ProcessBuilder(
+            "farscry", "extract", imagePath, "--affordances"
+        );
+        pb.redirectErrorStream(false);
+        Process process = pb.start();
+        String vasp = new String(process.getInputStream().readAllBytes());
+        int exitCode = process.waitFor();
+        if (exitCode != 0) return originalMessage;
+        return originalMessage + "\n\n[VISUAL CONTEXT]\n" + vasp;
+    } catch (Exception e) {
+        log.warn("farscry unavailable", e);
+        return originalMessage;
+    }
+}
 ```
 
 Conversation screenshots

@@ -57,9 +57,9 @@ from farscry import diff
 
 delta = diff('before.png', 'after.png')
 
-print(delta['delta']['appeared'])  # [...new elements]
-print(delta['delta']['changed'])   # [...changed elements]
-print(delta['delta']['removed'])   # [...removed elements]
+for entry in delta['entries']:
+    print(entry)
+# each entry has a type key: 'Appeared', 'Changed', 'Removed', or 'Unchanged'
 ```
 
 `extract_batch(images, **options)`
@@ -100,6 +100,5 @@ Supported platforms
 | Platform | Binary |
 |---|---|
 | macOS M1/M2/M3/M4 | `farscry-aarch64-apple-darwin` |
-| macOS Intel | `farscry-x86_64-apple-darwin` |
 | Linux x86_64 | `farscry-x86_64-unknown-linux-gnu` |
 | Windows x86_64 | `farscry-x86_64-pc-windows-msvc` |

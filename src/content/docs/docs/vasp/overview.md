@@ -68,6 +68,10 @@ Steps:
 
 Full output schema
 
+> **Note:** The schema below shows the data structure and field names. The text output format
+> uses position labels: `[middle-left] label "Max Value"`. See [CLI Reference](/docs/cli/extract)
+> for the exact text output.
+
 ```
 vasp_version: 1.0
 schema_version: 1
@@ -80,11 +84,10 @@ agent_context: "Payment settings form - Save Changes button available"
 
 ui_tree:
   heading  "Payment Settings"             (20, 20)
-  section  "Limits"
-    label  "Max Value"                    (20, 120)
-    input  value="1500"                   (200, 120)  editable: true
-    label  "Status"                       (20, 160)
-    badge  "Active"                       (200, 160)  state: success
+  label    "Max Value"                    (20, 120)
+  input    value="1500"                   (200, 120)  editable: true
+  label    "Status"                       (20, 160)
+  badge    "Active"                       (200, 160)
   button   "Save Changes"                 (400, 300)  enabled: true
   button   "Cancel"                       (500, 300)  enabled: true
   error    "Value must be <= 10000"        (20, 350)
@@ -107,7 +110,7 @@ VASP structured text uses ~9x fewer tokens than sending the image directly. Meas
 
 **Ratio: ~9x fewer tokens for a 1080p screenshot.** For a 10-step automation loop re-examining the same screen, the difference is 15,640 tokens vs 1,750 tokens.
 
-The diff case is more pronounced: after an workflow action, `farscry diff` produces ~100 tokens describing what changed, versus re-sending 1,564 image tokens to describe everything.
+The diff case is more pronounced: after a workflow action, `farscry diff` produces ~100 tokens describing what changed, versus re-sending 1,564 image tokens to describe everything.
 
 ```
 Raw vision automation loop (10 steps):   ~15,640 image tokens
