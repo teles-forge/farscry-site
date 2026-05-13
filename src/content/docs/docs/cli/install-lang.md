@@ -1,5 +1,5 @@
 ---
-title: farscry --install-lang
+title: farscry install-lang
 description: Download additional OCR language models on demand.
 ---
 
@@ -8,16 +8,16 @@ farscry ships with English built in. Additional languages are downloaded on dema
 Usage
 
 ```bash
-farscry --install-lang <code>
+farscry install-lang <code>
 ```
 
 Examples
 
 ```bash
-farscry --install-lang por    # Portuguese
-farscry --install-lang rus    # Russian
-farscry --install-lang chi_sim # Chinese Simplified
-farscry --install-lang jpn    # Japanese
+farscry install-lang por    # Portuguese
+farscry install-lang rus    # Russian
+farscry install-lang chi_sim # Chinese Simplified
+farscry install-lang jpn    # Japanese
 ```
 
 Priority languages for v0.1.0
@@ -46,10 +46,10 @@ Using a language
 
 ```bash
 Explicit language
-farscry screenshot.png --lang por
+farscry extract screenshot.png --lang por
 
 Multi-language (mixed content)
-farscry screenshot.png --lang eng+por
+farscry extract screenshot.png --lang eng+por
 ```
 
 Storage location
