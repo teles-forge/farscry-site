@@ -50,7 +50,7 @@ const vasp = await extract('screenshot.png', {
 })
 
 console.log(vasp.screen_type)     // 'config'
-console.log(vasp.workflow_context)   // "Payment settings - Save available"
+console.log(vasp.agent_context)   // "Payment settings - Save available"
 console.log(vasp.affordances)     // [...interactive elements]
 ```
 
@@ -103,19 +103,19 @@ interface VaspOutput {
   screen_type: 'error' | 'config' | 'terminal' | 'conversation' | 'ui' | 'unknown'
   confidence: 'high' | 'medium' | 'low' | 'none'
   lang: string
-  workflow_context: string
+  agent_context: string
+  delta_from?: string
+  context_similarity?: number
+  context_changed?: boolean
   ui_tree?: UiElement[]
   affordances?: Affordance[]
-
-  error_message?: string
-  error_code?: string
-  raw_text?: string
 }
 
 interface Affordance {
   action: 'click' | 'type' | 'select'
   label: string
-  position: { x: number; y: number }
+  cx: number
+  cy: number
   enabled: boolean
   current_value?: string
 }
@@ -124,12 +124,11 @@ interface VaspDelta {
   vasp_version: string
   diff_from: string
   diff_to: string
-  delta: {
-    appeared: UiElement[]
-    changed: ChangedElement[]
-    removed: UiElement[]
-    unchanged: UiElement[]
-  }
+  context_similarity: number
+  context_changed: boolean
+  agent_context: string
+  entries: DeltaEntry[]
+  tokens_saved?: number
 }
 ```
 
@@ -138,6 +137,5 @@ Supported platforms
 | Platform | Binary |
 |---|---|
 | macOS M1/M2/M3/M4 | `farscry-aarch64-apple-darwin` |
-| macOS Intel | `farscry-x86_64-apple-darwin` |
 | Linux x86_64 | `farscry-x86_64-unknown-linux-gnu` |
 | Windows x86_64 | `farscry-x86_64-pc-windows-msvc` |
