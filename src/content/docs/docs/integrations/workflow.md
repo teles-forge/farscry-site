@@ -8,7 +8,7 @@ When a workflow takes a UI action, `farscry diff` returns what changed locally, 
 The core pattern
 
 ```bash
-farscry before.png -o before.vasp
+farscry extract before.png -o before.vasp
 
 farscry diff before.png after.png
 ```
@@ -73,7 +73,7 @@ removed:
 Example: verifying a payment flow
 
 ```bash
-farscry payment_form.png --affordances
+farscry extract payment_form.png --affordances
 affordances:
 - type:  input "Card Number"   current: ""
 - click: "Submit Payment"      enabled: true
@@ -108,11 +108,11 @@ Loop detection
 farscry's `state_id` (perceptual hash) enables loop detection in automation workflows:
 
 ```bash
-farscry screen.png --context
+farscry extract screen.png --context
 Payment settings, Save available
 ```
 
-For `state_id`, run `farscry screen.png` without `--context`.
+For `state_id`, run `farscry extract screen.png` without `--context`.
 
 If the same `state_id` appears twice, the workflow is in a loop, the action had no effect.
 

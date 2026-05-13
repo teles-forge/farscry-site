@@ -3,7 +3,7 @@ title: farscry serve
 description: Run farscry as an MCP server with OCR engines kept warm in memory.
 ---
 
-Starts farscry as a long-running MCP (Model Context Protocol) server. OCR engines are loaded once and kept warm in memory, eliminating the 20-60ms cold-start overhead on every invocation.
+Starts farscry as a long-running MCP (Model Context Protocol) server. OCR engines are loaded once and kept warm in memory, eliminating cold-start overhead on every invocation.
 
 Usage
 
@@ -16,9 +16,9 @@ Why use the server
 
 | Mode | Latency |
 |---|---|
-| CLI (cold) | 180ms + 20-60ms cold start |
-| CLI (warm, OCR engines cached) | ~180ms |
-| `serve --mcp` (OCR engines in RAM) | ~150ms consistently |
+| CLI cold start | ~350ms |
+| `serve --mcp` warm (CoreML) | **38ms** |
+| `serve --mcp` warm (x86 ORT) | ~222ms |
 
 The MCP server mode is the recommended way to integrate farscry with MCP-compatible workflows that make repeated screenshot analysis calls.
 

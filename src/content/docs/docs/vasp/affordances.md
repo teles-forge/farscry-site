@@ -52,10 +52,10 @@ Requesting affordances
 
 ```bash
 Include affordances in standard output (default: true with MCP)
-farscry screenshot.png --affordances
+farscry extract screenshot.png --affordances
 
 Affordances only (skip ui_tree and other fields)
-farscry screenshot.png --affordances --context
+farscry extract screenshot.png --affordances --context
 ```
 
 In automation workflows
@@ -63,22 +63,22 @@ In automation workflows
 Form filling
 
 ```bash
-farscry screen.png --affordances
+farscry extract screen.png --affordances
 workflow reads: type: input "Email" at (200, 180) current: ""
 workflow types email, submits
-farscry screen2.png --affordances
+farscry extract screen2.png --affordances
 workflow reads: appeared: badge "Saved" - action confirmed
 ```
 
 Action verification
 
 ```bash
-farscry before.png --affordances
+farscry extract before.png --affordances
 click: "Delete" at (300, 400) enabled: true
 
 workflow clicks delete
 
-farscry after.png --affordances
+farscry extract after.png --affordances
 click: "Confirm Delete" at (300, 200) enabled: true
 workflow sees confirmation dialog appeared - proceeds
 ```
@@ -86,7 +86,7 @@ workflow sees confirmation dialog appeared - proceeds
 Detecting disabled states
 
 ```bash
-farscry form.png --affordances
+farscry extract form.png --affordances
 click: "Submit" at (400, 350) enabled: false
 workflow sees Submit is disabled - checks required fields first
 ```

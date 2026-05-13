@@ -8,7 +8,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>farscry - vision APIs describe. farscry gives coordinates.</title>
-  <meta name="description" content="Up to 16x fewer tokens than remote screenshot processing. 38ms on M4 Pro. Offline. $0. farscry gives agents exact pixel coordinates - not descriptions. Agents that act, not guess." />
+  <meta name="description" content="Up to 16x fewer tokens than remote screenshot processing. 38ms on M4 Pro. Offline. $0. farscry gives agents exact typed pixel coordinates from any screenshot - not descriptions." />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -1059,8 +1059,8 @@
       </div>
       <h1>vision APIs describe.<br />farscry gives <em>coordinates.</em></h1>
       <p class="hero-sub">
-        <strong>Agents that act, not guess.</strong><br />
-        Offline. $0. No GPU. No API key.
+        <strong>38ms. Offline. Typed coordinates.</strong><br />
+        Local. $0. No GPU. No API key.
       </p>
       <div class="hero-buttons">
         <a href="/docs/install" class="btn btn-primary">npm install farscry</a>
@@ -1076,17 +1076,27 @@
           <span class="dot dot-r"></span>
           <span class="dot dot-y"></span>
           <span class="dot dot-g"></span>
-          <span class="terminal-title">farscry screen.png</span>
+          <span class="terminal-title">farscry extract screen.png</span>
         </div>
         
         <div class="terminal-output" data-terminal-output>
-          <span class="tl"><span class="cmd">$ farscry screen.png</span></span>
-          <span class="tl"><span class="d">-></span> <span class="k">button</span>  <span class="s">"Save"</span>            <span class="d">at (400,300)</span>  <span class="appeared">enabled:true</span></span>
-          <span class="tl"><span class="d">-></span> <span class="k">button</span>  <span class="s">"Cancel"</span>          <span class="d">at (500,300)</span>  <span class="appeared">enabled:true</span></span>
-          <span class="tl"><span class="d">-></span> <span class="k">input</span>   <span class="s">"Card number"</span>     <span class="d">at (300,200)</span>  <span class="changed">empty:true</span></span>
-          <span class="tl"><span class="d">-></span> <span class="k">input</span>   <span class="s">"Expiry date"</span>     <span class="d">at (300,250)</span>  <span class="changed">empty:true</span></span>
-          <span class="tl"><span class="d">-></span> <span class="k">input</span>   <span class="s">"CVV"</span>             <span class="d">at (420,250)</span>  <span class="changed">empty:true</span></span>
-          <span class="tl"><span class="d">-></span> <span class="k">text</span>    <span class="s">"Amount"</span>          <span class="d">at (300,150)</span>  <span class="s">value:"$24.99"</span></span>
+          <span class="tl"><span class="cmd">$ farscry extract screen.png</span></span>
+          <span class="tl"><span class="sec">=== farscry visual context ===</span></span>
+          <span class="tl"><span class="k">source:</span> <span class="d">screen.png</span></span>
+          <span class="tl"><span class="k">screen_type:</span> <span class="s">config</span></span>
+          <span class="tl"><span class="k">state_id:</span> <span class="d">phash:8f4a2c9d1e3b7f6a</span></span>
+          <span class="tl"><span class="k">confidence:</span> <span class="s">high</span></span>
+          <span class="tl"><span class="k">agent_context:</span> <span class="s">"Payment settings - Save available"</span></span>
+          <span class="tl"><span class="d">---</span></span>
+          <span class="tl">&nbsp;</span>
+          <span class="tl"><span class="pos">[middle-right]</span>  <span class="k">button</span>  <span class="s">"Save Changes"</span>  <span class="appeared">enabled:true</span></span>
+          <span class="tl"><span class="pos">[middle-center]</span> <span class="k">input</span>   <span class="s">"Card number"</span>   <span class="changed">empty:true</span></span>
+          <span class="tl"><span class="pos">[middle-center]</span> <span class="k">input</span>   <span class="s">"Expiry"</span>        <span class="d">value:"12/26"</span></span>
+          <span class="tl"><span class="pos">[bottom]</span>        <span class="removed">error</span>   <span class="s">"Value must be &le; 10000"</span></span>
+          <span class="tl">&nbsp;</span>
+          <span class="tl"><span class="sec">affordances:</span></span>
+          <span class="tl">  <span class="changed">click</span> <span class="punc">&rarr;</span> <span class="s">"Save Changes"</span> <span class="d">at (400,300)</span>  <span class="appeared">enabled:true</span></span>
+          <span class="tl">  <span class="changed">type</span>  <span class="punc">&rarr;</span> <span class="s">"Card number"</span>  <span class="d">at (300,200)</span>  <span class="d">current:""</span></span>
         </div>
       </div>
     </div>
@@ -1281,10 +1291,10 @@
         <span class="dot dot-r"></span>
         <span class="dot dot-y"></span>
         <span class="dot dot-g"></span>
-        <span class="terminal-title">farscry checkout.png</span>
+        <span class="terminal-title">farscry extract checkout.png</span>
       </div>
       <div class="vasp-term-body">
-        <span class="tl"><span class="cmd">$ farscry checkout.png</span></span>
+        <span class="tl"><span class="cmd">$ farscry extract checkout.png</span></span>
         <span class="tl"><span class="sec">=== farscry visual context ===</span></span>
         <span class="tl"><span class="k">screen_type:</span> <span class="s">form</span></span>
         <span class="tl"><span class="d">---</span></span>
@@ -1488,7 +1498,7 @@ fp</div>
 <script is:inline>
 (function () {
 
-  const CMD = '$ farscry screen.png';
+  const CMD = '$ farscry extract screen.png';
   const OUTPUT = [
     '<span class="d">\u2192</span> <span class="k">button</span>  <span class="s">"Save"</span>           <span class="d">at (400,300)</span>  <span class="appeared">enabled:true</span>',
     '<span class="d">\u2192</span> <span class="k">button</span>  <span class="s">"Cancel"</span>         <span class="d">at (500,300)</span>  <span class="appeared">enabled:true</span>',

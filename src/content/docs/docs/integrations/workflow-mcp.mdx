@@ -10,7 +10,7 @@ farscry works in two modes: directly through a CLI pipe, or as a local MCP serve
 ## Quick start — CLI pipe
 
 ```bash
-farscry screenshot.png | your-runner "fix this"
+farscry extract screenshot.png | your-runner "fix this"
 ```
 
 The workflow receives typed VASP context instead of a raw image.
@@ -115,13 +115,13 @@ affordances:
 ### Fix a terminal error
 
 ```bash
-farscry terminal.png | your-runner "fix this build error"
+farscry extract terminal.png | your-runner "fix this build error"
 ```
 
 ### Verify a UI action worked
 
 ```bash
-farscry before.png -o before.vasp
+farscry extract before.png -o before.vasp
 
 farscry diff before.png after.png | your-runner "did the save succeed?"
 ```
@@ -129,11 +129,11 @@ farscry diff before.png after.png | your-runner "did the save succeed?"
 ### Extract form fields for automation
 
 ```bash
-farscry form.png --affordances | your-runner "fill in the form with test data"
+farscry extract form.png --affordances | your-runner "fill in the form with test data"
 ```
 
 ## Tips
 
-- Use `farscry screenshot.png --context` for a one-line `agent_context` summary when you don't need the full tree
+- Use `farscry extract screenshot.png --context` for a one-line `agent_context` summary when you don't need the full tree
 - Use `farscry diff` before asking "did this work?" — avoids a full-screen vision pass, returns an exact typed delta
 - Use `--affordances` when the workflow needs to interact with UI elements — lists exactly what can be clicked or typed
