@@ -790,7 +790,7 @@
     }
     .cost-line--bad .cost-line-val  { color: var(--danger); }
     .cost-line--good .cost-line-label { color: var(--text); font-weight: 500; }
-    .cost-line--good .cost-line-val  { color: var(--success); }
+    .cost-line--good .cost-line-val  { color: #fafafa; }
 
     /* ─────────── DIFF: FLOWING TIMELINE ─────────── */
     .diff-timeline { margin-top: 0; }
@@ -827,10 +827,8 @@
     }
     .mode-tag {
       font-family: var(--mono); font-size: 0.6875rem; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 0.08em;
-      color: var(--accent-high); background: var(--accent-low);
-      border: 1px solid rgba(99,102,241,0.25);
-      padding: 0.2rem 0.625rem; border-radius: 4px;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--accent-high);
       flex-shrink: 0;
     }
     .mode-primary-title {
@@ -842,7 +840,7 @@
       max-width: 600px; line-height: 1.65;
     }
     .mode-pair {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+      display: grid; grid-template-columns: 3fr 2fr; gap: 1.5rem;
     }
     @media (max-width: 640px) { .mode-pair { grid-template-columns: 1fr; } }
     .mode-secondary {
@@ -981,20 +979,7 @@
       <p>Screenshot tooling often returns descriptions. Workflows guess where to click, miss the target, and fail. OSWorld data shows <strong style="color:var(--text)">58% of visual automation failures trace back to wrong coordinates</strong> - not wrong decisions.</p>
       <p>farscry returns typed elements with exact pixel coordinates. The workflow knows the button is at (400,300). It clicks. It succeeds.</p>
       <p>Screenshot, error printout, Figma export, phone photo of a screen. Offline. No GPU.</p>
-      <div class="feature-stats">
-        <div class="feature-stat">
-          <span class="feature-stat-num">~175</span>
-          <span class="feature-stat-label">tokens per output (avg)</span>
-        </div>
-        <div class="feature-stat">
-          <span class="feature-stat-num">&lt;30s</span>
-          <span class="feature-stat-label">setup with farscry setup</span>
-        </div>
-        <div class="feature-stat">
-          <span class="feature-stat-num">100%</span>
-          <span class="feature-stat-label">deterministic output</span>
-        </div>
-      </div>
+
     </div>
 
     <div class="terminal">
