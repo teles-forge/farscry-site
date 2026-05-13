@@ -171,24 +171,20 @@ header.header {
   align-items: center !important;
   gap: 0.5rem !important;
 }
-/* macOS traffic light dots — single 52×12px canvas, 3 circles at absolute positions */
+/* macOS traffic light dots — SVG inline: guaranteed 3 circles, no gradient weirdness */
 .expressive-code .frame.has-title .header::before,
 .expressive-code .frame.is-terminal .header::before {
   content: '';
   display: block;
   width: 52px !important;
   min-width: 52px !important;
-  height: 12px;
-  flex: none !important;        /* ignore any flex shrink from parent */
-  /* All 3 layers share the same 52×12 canvas at position 0 0.
-     Each draws one circle at an absolute coordinate; transparent elsewhere. */
-  background-image:
-    radial-gradient(circle 6px at  6px 6px, #ff5f57 100%, transparent 0),
-    radial-gradient(circle 6px at 26px 6px, #ffbd2e 100%, transparent 0),
-    radial-gradient(circle 6px at 46px 6px, #28c840 100%, transparent 0);
-  background-size:     52px 12px;
+  max-width: 52px !important;
+  height: 12px !important;
+  flex: none !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='12'%3E%3Ccircle cx='6' cy='6' r='6' fill='%23ff5f57'/%3E%3Ccircle cx='26' cy='6' r='6' fill='%23ffbd2e'/%3E%3Ccircle cx='46' cy='6' r='6' fill='%2328c840'/%3E%3C/svg%3E");
+  background-size: 52px 12px;
   background-position: 0 0;
-  background-repeat:   no-repeat;
+  background-repeat: no-repeat;
 }
 /* Filename / tab text */
 .expressive-code .frame .title {
