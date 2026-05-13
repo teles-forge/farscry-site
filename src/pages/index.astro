@@ -775,6 +775,40 @@
       background: var(--border-soft);
       margin: 3.5rem 0;
     }
+    .perf-stats-row {
+      display: flex; align-items: flex-start;
+      padding-top: 2.5rem; margin-top: 2.5rem;
+      border-top: 1px solid var(--border-soft);
+    }
+    .perf-stat-item {
+      flex: 1; text-align: center; padding: 0 2rem;
+    }
+    .perf-stat-item + .perf-stat-item {
+      border-left: 1px solid var(--border-soft);
+    }
+    .perf-stat-big {
+      font-family: var(--mono);
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 700; letter-spacing: -0.04em;
+      color: var(--text); display: block;
+      font-variant-numeric: tabular-nums;
+    }
+    .perf-stat-l1 {
+      display: block; font-size: 0.9375rem;
+      color: var(--text-muted); margin-top: 0.5rem;
+    }
+    .perf-stat-l2 {
+      display: block; font-size: 0.8125rem;
+      color: var(--text-dim); font-family: var(--mono);
+      margin-top: 0.2rem;
+    }
+    @media (max-width: 640px) {
+      .perf-stats-row { flex-direction: column; gap: 0; }
+      .perf-stat-item { padding: 1.25rem 0; text-align: left; }
+      .perf-stat-item + .perf-stat-item {
+        border-left: none; border-top: 1px solid var(--border-soft);
+      }
+    }
     .cost-lines { max-width: 580px; }
     .cost-line {
       display: flex; justify-content: space-between; align-items: baseline;
@@ -840,12 +874,12 @@
       max-width: 600px; line-height: 1.65;
     }
     .mode-pair {
-      display: grid; grid-template-columns: 3fr 2fr; gap: 1.5rem;
+      display: grid; grid-template-columns: 13fr 7fr; gap: 3rem;
     }
-    @media (max-width: 640px) { .mode-pair { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) { .mode-pair { grid-template-columns: 1fr; gap: 2rem; } }
     .mode-secondary {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 12px; padding: 1.5rem;
+      border-left: 2px solid rgba(99,102,241,0.35);
+      padding-left: 1.5rem;
     }
     .mode-secondary-title {
       display: block; font-size: 1rem; font-weight: 600; color: var(--text);
@@ -853,6 +887,16 @@
     }
     .mode-secondary p {
       font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.875rem; line-height: 1.6;
+    }
+    .mode-secondary .card-code {
+      font-size: 0.75rem; white-space: nowrap; overflow-x: auto;
+      background: transparent; border: none; padding: 0;
+      color: var(--text-dim);
+    }
+    .mode-note {
+      font-family: var(--mono); font-size: 0.75rem;
+      color: var(--text-dim); margin-top: 0.75rem;
+      line-height: 1.5;
     }
 
     /* ─────────── INSTALL: SINGLE TERMINAL ─────────── */
@@ -1019,6 +1063,24 @@
     <div class="perf-meta">38ms warm · $0 · offline · N=223, ScreenSpot-Pro (MIT)</div>
   </div>
 
+  <div class="perf-stats-row">
+    <div class="perf-stat-item">
+      <span class="perf-stat-big">65<span style="color:var(--accent-high)">×</span></span>
+      <span class="perf-stat-l1">faster · 4K screens</span>
+      <span class="perf-stat-l2">vs Tesseract · 38ms warm</span>
+    </div>
+    <div class="perf-stat-item">
+      <span class="perf-stat-big">~9<span style="color:var(--accent-high)">×</span></span>
+      <span class="perf-stat-l1">fewer tokens · 1080p</span>
+      <span class="perf-stat-l2">vs Claude Vision (measured)</span>
+    </div>
+    <div class="perf-stat-item">
+      <span class="perf-stat-big">~15<span style="color:var(--accent-high)">×</span></span>
+      <span class="perf-stat-l1">fewer tokens · 4K screens</span>
+      <span class="perf-stat-l2">vs Claude Vision · N=223</span>
+    </div>
+  </div>
+
   <div class="perf-separator"></div>
 
   <div class="cost-lines">
@@ -1126,13 +1188,10 @@
   <div class="mode-pair">
     <div class="mode-secondary">
       <span class="mode-tag">mode 2 — diff</span>
-      <span class="mode-secondary-title">What changed between states</span>
-      <p>Run before and after an action. Get only the delta — no re-upload, no full image cost.</p>
-      <div class="card-code">
-        $ farscry diff before.png after.png<br />
-        → button "Submit": disabled → enabled<br />
-        → spinner: removed
-      </div>
+      <span class="mode-secondary-title">After each action, only what changed</span>
+      <p>The MCP daemon diffs before → after automatically. No re-upload. No tokens wasted on pixels that didn't change.</p>
+      <div class="card-code">→ button "Submit": disabled → enabled<br />→ error banner: removed<br />→ 3 elements unchanged</div>
+      <p class="mode-note">Automatic in MCP mode. Manual: farscry diff before.png after.png</p>
     </div>
     <div class="mode-secondary">
       <span class="mode-tag">mode 3 — pipe</span>
