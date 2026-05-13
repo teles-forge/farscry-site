@@ -809,22 +809,40 @@
         border-left: none; border-top: 1px solid var(--border-soft);
       }
     }
-    .cost-lines { max-width: 580px; }
-    .cost-line {
-      display: flex; justify-content: space-between; align-items: baseline;
-      padding: 1rem 0;
+    /* ─────────── FULL COMPARISON TABLE ─────────── */
+    .compare-section { max-width: 700px; }
+    .compare-group { margin-bottom: 2rem; }
+    .compare-group-label {
+      font-family: var(--mono); font-size: 0.6875rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--text-dim);
+      padding-bottom: 0.5rem;
       border-bottom: 1px solid var(--border-soft);
-      font-size: 1rem;
+      margin-bottom: 0;
     }
-    .cost-line:first-child { border-top: 1px solid var(--border-soft); }
-    .cost-line-label { color: var(--text-muted); }
-    .cost-line-val {
-      font-family: var(--mono); font-weight: 700; font-size: 1.1875rem;
-      font-variant-numeric: tabular-nums;
+    .compare-row {
+      display: flex; align-items: baseline; gap: 0.75rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border-soft);
+      font-size: 0.9375rem;
+      flex-wrap: wrap;
     }
-    .cost-line--bad .cost-line-val  { color: var(--danger); }
-    .cost-line--good .cost-line-label { color: var(--text); font-weight: 500; }
-    .cost-line--good .cost-line-val  { color: #fafafa; }
+    .compare-what { color: var(--text-muted); flex: 1; min-width: 160px; }
+    .compare-from {
+      font-family: var(--mono); color: var(--danger);
+      font-size: 0.875rem; white-space: nowrap; opacity: 0.85;
+    }
+    .compare-arr { color: var(--text-dim); flex-shrink: 0; }
+    .compare-to {
+      font-family: var(--mono); color: var(--text);
+      font-weight: 600; white-space: nowrap;
+    }
+    .compare-to--zero { color: #fafafa; }
+    .compare-mult {
+      font-family: var(--mono); font-size: 0.8125rem;
+      color: var(--accent-high); font-weight: 600;
+      margin-left: auto; white-space: nowrap;
+    }
 
     /* ─────────── DIFF: FLOWING TIMELINE ─────────── */
     .diff-timeline { display: flex; flex-direction: column; gap: 0.625rem; }
@@ -1089,15 +1107,70 @@
 
   <div class="perf-separator"></div>
 
-  <div class="cost-lines">
-    <div class="cost-line cost-line--bad">
-      <span class="cost-line-label">Claude Vision — 10,000 images/day</span>
-      <span class="cost-line-val">$17,000/year</span>
+  <div class="compare-section">
+
+    <!-- Speed -->
+    <div class="compare-group">
+      <div class="compare-group-label">Speed</div>
+      <div class="compare-row">
+        <span class="compare-what">vs Tesseract 5.5 (4K)</span>
+        <span class="compare-from">~2,500ms</span>
+        <span class="compare-arr">→</span>
+        <span class="compare-to">38ms</span>
+        <span class="compare-mult">65×</span>
+      </div>
+      <div class="compare-row">
+        <span class="compare-what">vs Cloud Vision API</span>
+        <span class="compare-from">~2-5s</span>
+        <span class="compare-arr">→</span>
+        <span class="compare-to">38ms</span>
+        <span class="compare-mult">~100×</span>
+      </div>
     </div>
-    <div class="cost-line cost-line--good">
-      <span class="cost-line-label">farscry</span>
-      <span class="cost-line-val">$0</span>
+
+    <!-- Tokens -->
+    <div class="compare-group">
+      <div class="compare-group-label">Token usage per image</div>
+      <div class="compare-row">
+        <span class="compare-what">vs Claude Vision · 1080p</span>
+        <span class="compare-from">1,568 tokens</span>
+        <span class="compare-arr">→</span>
+        <span class="compare-to">~175 tokens</span>
+        <span class="compare-mult">~9×</span>
+      </div>
+      <div class="compare-row">
+        <span class="compare-what">vs Claude Vision · 4K (N=223)</span>
+        <span class="compare-from">1,568 tokens</span>
+        <span class="compare-arr">→</span>
+        <span class="compare-to">~105 tokens</span>
+        <span class="compare-mult">~15×</span>
+      </div>
     </div>
+
+    <!-- Cost -->
+    <div class="compare-group">
+      <div class="compare-group-label">Cost · 10,000 images / day</div>
+      <div class="compare-row">
+        <span class="compare-what">Claude Sonnet 4.6 · $3/MTok</span>
+        <span class="compare-from">$17,000/year</span>
+        <span class="compare-arr">→</span>
+        <span class="compare-to compare-to--zero">$0</span>
+      </div>
+      <div class="compare-row">
+        <span class="compare-what">Claude Opus 4.7 · $5/MTok (4K)</span>
+        <span class="compare-from">$90,000/year</span>
+        <span class="compare-arr">→</span>
+        <span class="compare-to compare-to--zero">$0</span>
+      </div>
+      <div class="compare-row">
+        <span class="compare-what">Tesseract · compute only</span>
+        <span class="compare-from">server cost</span>
+        <span class="compare-arr">→</span>
+        <span class="compare-to compare-to--zero">$0</span>
+        <span class="compare-mult" style="color:var(--text-dim)">+ 65× slower</span>
+      </div>
+    </div>
+
   </div>
 
   <div class="bench-repro" style="margin-top:2.5rem">
