@@ -9,7 +9,7 @@ Usage
 
 ```bash
 farscry diff <before> <after>
-farscry diff <before> <after> --workflow
+farscry diff <before> <after> --json
 ```
 
 Examples
@@ -18,9 +18,6 @@ Examples
 Standard diff
 farscry diff before.png after.png
 
-Compact delta for workflow consumption
-farscry diff before.png after.png --workflow
-
 JSON output
 farscry diff before.png after.png --json
 ```
@@ -28,22 +25,21 @@ farscry diff before.png after.png --json
 Output
 
 ```
-vasp_version: 1.0
-diff_from: phash:8f4a2c3d...
-diff_to:   phash:3d9b1e7a...
+=== farscry diff ===
+state_id:   phash:3d9b1e7a...
+delta_from: phash:8f4a2c3d...
+context_similarity: 0.847
+context_changed: true
+---
 
-delta:
-  appeared:
-    - error_banner: "Payment failed - card declined"
-    - button: "Retry" at (300, 420) enabled: true
-  changed:
-    - button: "Submit" text: "Submit" -> "Processing..." enabled: true -> false
-    - input: "Amount" value: "150" -> "0"
-  removed:
-    - spinner at (450, 200)
-  unchanged:
-    - label: "Max Value"
-    - input: "Email"
+appeared:  error    "Payment failed - card declined"
+appeared:  button   "Retry"
+changed:   button   "Submit" -> "Processing..."
+changed:   input    "Amount" value: "150" -> "0"
+removed:   label    "spinner"
+unchanged: [4 elements]
+
+Token savings: ~312 tokens saved vs re-sending both images
 ```
 
 How the diff algorithm works
@@ -95,7 +91,6 @@ Options
 
 | Flag | Description |
 |---|---|
-| `--workflow` | Compact delta optimized for workflow consumption |
 | `--json` | JSON output |
 | `-v` | Verbose |
 | `--debug` | Full debug |
