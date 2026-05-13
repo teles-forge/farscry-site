@@ -500,13 +500,13 @@
     }
     .bench-row.in-view .bench-bar { transform: scaleX(1); }
 
-    /* farscry bar is nearly invisible at scale — THAT IS THE MESSAGE */
+    
     .bench-bar--ours {
-      width: max(6px, 1%);  /* 38/3800 ≈ 1% */
+      width: max(6px, 1%);  
       background: linear-gradient(to right, var(--accent), #818cf8);
     }
     .bench-bar--mid {
-      width: 65.8%;  /* 2500/3800 */
+      width: 65.8%;  
       background: var(--text-dim);
     }
     .bench-bar--slow {
@@ -585,7 +585,7 @@
     }
     .cost-context strong { color: var(--text); }
 
-    /* ─────────── COST TABLE ─────────── */
+    
     .cost-table-wrap { margin-bottom: 2.5rem; }
     .cost-table {
       width: 100%; border-collapse: collapse;
@@ -754,7 +754,7 @@
     .vasp-term-body { padding: 1.25rem; line-height: 1.75; }
 
 
-    /* ─────────── BENCHMARK: BIG NUMBER (Turbopack-style) ─────────── */
+    
     .perf-hero {
       text-align: center;
       padding: 1.5rem 0 1rem;
@@ -823,7 +823,7 @@
         border-left: none; border-top: 1px solid var(--border-soft);
       }
     }
-    /* ─────────── FULL COMPARISON TABLE ─────────── */
+    
     .compare-section { max-width: 700px; margin: 0 auto; }
     .compare-group { margin-bottom: 2rem; }
     .compare-group-label {
@@ -858,7 +858,7 @@
       margin-left: auto; white-space: nowrap;
     }
 
-    /* ─────────── DIFF: FLOWING TIMELINE ─────────── */
+    
     .diff-timeline { display: flex; flex-direction: column; gap: 0.625rem; }
     .diff-track {
       display: flex; align-items: center; gap: 1rem;
@@ -888,7 +888,7 @@
     .diff-track--bad  .diff-track-price { color: var(--danger); }
     .diff-track--good .diff-track-price { color: var(--success); }
 
-    /* ─────────── THREE MODES: ASYMMETRIC ─────────── */
+    
     .mode-primary { margin-bottom: 1.25rem; }
     .mode-primary-header {
       display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;
@@ -937,7 +937,7 @@
       line-height: 1.5;
     }
 
-    /* ─────────── MODE SEPARATOR ─────────── */
+    
     .mode-block {
       margin-top: 2rem; padding-top: 2rem;
       border-top: 1px solid var(--border-soft);
@@ -946,7 +946,7 @@
       margin-top: 1.5rem;
     }
 
-    /* ─────────── INSTALL: PACKAGE MANAGER LIST ─────────── */
+    
     .install-methods {
       border: 1px solid var(--border);
       border-radius: 10px; overflow: hidden;
@@ -1010,7 +1010,7 @@
 </head>
 <body>
 
-<!-- ═══════════════ NAV ═══════════════ -->
+
 <nav>
   <a href="/" class="nav-brand">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" aria-hidden="true">
@@ -1030,7 +1030,7 @@
        target="_blank" rel="noopener"
        class="nav-star"
        id="gh-star-btn">
-      <!-- GitHub star icon -->
+      
       <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
       </svg>
@@ -1041,7 +1041,7 @@
   </div>
 </nav>
 
-<!-- ═══════════════ HERO ═══════════════ -->
+
 <div class="hero-wrap">
   <div class="hero">
     <div>
@@ -1071,7 +1071,7 @@
           <span class="dot dot-g"></span>
           <span class="terminal-title">farscry screen.png</span>
         </div>
-        <!-- JS populates this. Static fallback below. -->
+        
         <div class="terminal-output" data-terminal-output>
           <span class="tl"><span class="cmd">$ farscry screen.png</span></span>
           <span class="tl"><span class="d">-></span> <span class="k">button</span>  <span class="s">"Save"</span>            <span class="d">at (400,300)</span>  <span class="appeared">enabled:true</span></span>
@@ -1088,7 +1088,7 @@
 
 <hr class="divider" />
 
-<!-- ═══════════════ SECTION A: DESCRIBE ═══════════════ -->
+
 <section id="describe">
   <div class="feature-grid">
     <div class="feature-desc">
@@ -1119,7 +1119,7 @@
 
 <hr class="divider" />
 
-<!-- ═══════════════ BENCHMARK ═══════════════ -->
+
 <section id="benchmark">
   <div class="section-label">Performance</div>
 
@@ -1151,7 +1151,7 @@
 
   <div class="compare-section">
 
-    <!-- Speed -->
+    
     <div class="compare-group">
       <div class="compare-group-label">Speed</div>
       <div class="compare-row">
@@ -1170,7 +1170,7 @@
       </div>
     </div>
 
-    <!-- Tokens -->
+    
     <div class="compare-group">
       <div class="compare-group-label">Token usage per image</div>
       <div class="compare-row">
@@ -1189,7 +1189,7 @@
       </div>
     </div>
 
-    <!-- Cost -->
+    
     <div class="compare-group">
       <div class="compare-group-label">Cost · 10,000 images / day</div>
       <div class="compare-row">
@@ -1217,7 +1217,7 @@
 
 <hr class="divider" />
 
-<!-- ═══════════════ SECTION B: AUTOMATIC DIFF ═══════════════ -->
+
 <section id="diff">
   <div class="section-label">Automatic Diff</div>
   <h2>38ms instead of 5 seconds, every action.</h2>
@@ -1257,12 +1257,12 @@
 
 <hr class="divider" />
 
-<!-- ═══════════════ THREE MODES ═══════════════ -->
+
 <section id="modes">
   <h2>One binary. Three ways to use it.</h2>
   <p class="section-sub">Runs local for all three. No server, no GPU, no account.</p>
 
-  <!-- Mode 1 — DOMINANT: full-width, the code is the product -->
+  
   <div class="mode-primary">
     <div class="mode-primary-header">
       <span class="mode-tag">mode 1 — describe</span>
@@ -1298,7 +1298,7 @@
     </div>
   </div>
 
-  <!-- Mode 2 — DOMINANT: full terminal, same weight as mode 1 -->
+  
   <div class="mode-block">
     <div class="mode-primary-header">
       <span class="mode-tag">mode 2 — diff</span>
@@ -1339,7 +1339,7 @@
     </div>
   </div>
 
-  <!-- Mode 3 — minimal callout -->
+  
   <div class="mode-lone">
     <div class="mode-secondary">
       <span class="mode-tag">mode 3 — pipe</span>
@@ -1352,7 +1352,7 @@
 
 <hr class="divider" />
 
-<!-- ═══════════════ INSTALL ═══════════════ -->
+
 <section id="install">
   <div class="section-label">Install</div>
   <h2>Up in 30 seconds.</h2>
@@ -1399,7 +1399,7 @@
 
 <hr class="divider" />
 
-<!-- ═══════════════ VASP PROTOCOL ═══════════════ -->
+
 <section>
   <div class="vasp-grid">
     <div class="vasp-desc">
@@ -1448,7 +1448,7 @@
   </div>
 </section>
 
-<!-- ═══════════════ FOOTER ═══════════════ -->
+
 <footer>
   <p style="margin-bottom:0.5rem">
     Built by <a href="https://github.com/TelesNascimento25" target="_blank" rel="noopener">Darlysson Teles</a>
@@ -1461,7 +1461,7 @@
   </p>
 </footer>
 
-<!-- ═══════════════ SCRIPTS ═══════════════ -->
+
 <script is:inline>
 (function () {
 
@@ -1569,7 +1569,7 @@
     });
   }
 
-  /* ── Copy buttons on install commands ── */
+  
   document.querySelectorAll('.im-copy').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var cmd = btn.closest('.install-method').querySelector('.im-cmd').textContent.trim();
@@ -1581,7 +1581,7 @@
           btn.classList.remove('copied');
         }, 1600);
       }).catch(function () {
-        /* fallback: select the text */
+        
         var el = btn.closest('.install-method').querySelector('.im-cmd');
         var range = document.createRange();
         range.selectNodeContents(el);

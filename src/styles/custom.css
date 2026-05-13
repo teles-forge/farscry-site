@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
-/* ─── Starlight design tokens — aligned with landing page ─── */
 :root {
   --sl-color-accent-low:  #18163a;
   --sl-color-accent:      #6366f1;
@@ -17,7 +16,6 @@
   --sl-font-mono:         'JetBrains Mono', 'Fira Code', monospace;
 }
 
-/* ─── Dark mode — exact match with landing page ─── */
 :root[data-theme='dark'] {
   --sl-color-bg:          #09090b;
   --sl-color-bg-nav:      #09090b;
@@ -27,21 +25,18 @@
   --sl-color-text-accent: #a5b4fc;
 }
 
-/* ─── Body smoothing ─── */
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: "cv02" 1, "cv03" 1, "cv04" 1;
 }
 
-/* ─── Nav / header ─── */
 header.header {
   background: rgba(9,9,11,0.88) !important;
   backdrop-filter: blur(16px) saturate(180%);
   border-bottom: 1px solid rgba(255,255,255,0.07) !important;
 }
 
-/* ─── Nav brand ─── */
 .site-title > .site-title:last-child { display: none; }
 .site-title {
   font-family: var(--sl-font-mono);
@@ -51,7 +46,6 @@ header.header {
   gap: 0.5rem !important;
 }
 
-/* ─── Sidebar ─── */
 .sidebar-pane {
   background: #09090b !important;
   border-right: 1px solid rgba(255,255,255,0.06) !important;
@@ -71,7 +65,7 @@ header.header {
   background: rgba(99,102,241,0.08);
   font-weight: 500;
 }
-/* Sidebar group labels */
+
 .sidebar nav .group-label span,
 .sidebar nav details summary span {
   font-size: 0.6875rem;
@@ -81,7 +75,6 @@ header.header {
   color: var(--sl-color-gray-3);
 }
 
-/* ─── Headings ─── */
 .sl-markdown-content h1 {
   font-size: clamp(1.75rem, 4vw, 2.25rem);
   letter-spacing: -0.035em;
@@ -111,7 +104,6 @@ header.header {
   color: #f2f2f4;
 }
 
-/* ─── Body text ─── */
 .sl-markdown-content p {
   line-height: 1.75;
   color: #a0a0a8;
@@ -119,7 +111,6 @@ header.header {
 }
 .sl-markdown-content p + p { margin-top: 1rem; }
 
-/* ─── Inline code ─── */
 .sl-markdown-content :not(pre) > code {
   font-family: var(--sl-font-mono);
   font-size: 0.875em;
@@ -130,7 +121,6 @@ header.header {
   color: #a5b4fc;
 }
 
-/* ─── Code blocks — base (non-expressive) ─── */
 .sl-markdown-content pre:not(.expressive-code pre) {
   background: #0d0d11 !important;
   border: 1px solid rgba(255,255,255,0.07);
@@ -145,7 +135,6 @@ header.header {
   padding: 0;
 }
 
-/* ─── Expressive Code blocks — macOS terminal style ─── */
 .expressive-code .frame {
   border: 1px solid rgba(255,255,255,0.08) !important;
   border-radius: 12px !important;
@@ -161,7 +150,7 @@ header.header {
   line-height: 1.75 !important;
   padding: 1.25rem 1.5rem !important;
 }
-/* Title bar — matches .terminal-bar in the landing page */
+
 .expressive-code .frame.has-title .header,
 .expressive-code .frame.is-terminal .header {
   background: #16161a !important;
@@ -171,7 +160,7 @@ header.header {
   align-items: center !important;
   gap: 0.5rem !important;
 }
-/* macOS traffic light dots — SVG inline: guaranteed 3 circles, no gradient weirdness */
+
 .expressive-code .frame.has-title .header::before,
 .expressive-code .frame.is-terminal .header::before {
   content: '';
@@ -186,14 +175,14 @@ header.header {
   background-position: 0 0;
   background-repeat: no-repeat;
 }
-/* Filename / tab text */
+
 .expressive-code .frame .title {
   font-family: var(--sl-font-mono) !important;
   font-size: 0.6875rem !important;
   color: #52525b !important;
   font-weight: 400 !important;
 }
-/* Copy button */
+
 .expressive-code .copy button {
   background: rgba(255,255,255,0.05) !important;
   border: 1px solid rgba(255,255,255,0.08) !important;
@@ -207,12 +196,11 @@ header.header {
   color: #f2f2f4 !important;
   border-color: rgba(255,255,255,0.18) !important;
 }
-/* Frame without title — still gets a subtle bar */
+
 .expressive-code .frame:not(.has-title) pre {
   padding-top: 1.25rem !important;
 }
 
-/* ─── Links ─── */
 .sl-markdown-content a {
   color: var(--sl-color-accent-high);
   text-decoration: none;
@@ -223,7 +211,6 @@ header.header {
   text-decoration: underline;
 }
 
-/* ─── Tables ─── */
 .sl-markdown-content table {
   border-collapse: collapse;
   width: 100%;
@@ -249,7 +236,6 @@ header.header {
 .sl-markdown-content td { color: #a0a0a8; }
 .sl-markdown-content td code { font-size: 0.8125em; }
 
-/* ─── Aside / callout components ─── */
 .starlight-aside {
   border-radius: 8px;
   border-left-width: 2px !important;
@@ -265,7 +251,6 @@ header.header {
   letter-spacing: 0.1em;
 }
 
-/* ─── Pagination ─── */
 .pagination-links a {
   border: 1px solid rgba(255,255,255,0.08) !important;
   border-radius: 8px !important;
@@ -276,13 +261,11 @@ header.header {
   border-color: rgba(99,102,241,0.4) !important;
 }
 
-/* ─── Scrollbar ─── */
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: #09090b; }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }
 
-/* ─── Content area ─── */
 .content-panel {
   padding-top: 2rem !important;
 }
