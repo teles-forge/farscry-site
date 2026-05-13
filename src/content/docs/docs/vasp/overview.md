@@ -38,7 +38,7 @@ screen_type: error|config|terminal|conversation|ui|unknown
 confidence: high|medium|low|none
 lang: eng|por|rus|chi_sim|...
 delta_from: phash:<prior_state_id>|null # null if first observation
-workflow_context: <one-line summary>        # what the workflow needs to know, now
+agent_context: <one-line summary>           # what the workflow needs to know, now
 ```
 
 The visual state fingerprint (`state_id`)
@@ -76,7 +76,7 @@ delta_from: null
 screen_type: config
 confidence: high
 lang: eng
-workflow_context: "Payment settings form - Save Changes button available"
+agent_context: "Payment settings form - Save Changes button available"
 
 ui_tree:
   heading  "Payment Settings"             (20, 20)
