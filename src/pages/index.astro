@@ -1013,6 +1013,95 @@
     }
     footer a { color: var(--text-dim); text-decoration: none; transition: color 0.15s; }
     footer a:hover { color: var(--text-muted); }
+
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    @media (max-width: 860px) { .roadmap-grid { grid-template-columns: 1fr; } }
+    .roadmap-version {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+    }
+    .roadmap-version-tag {
+      font-family: var(--mono);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+    }
+    .roadmap-tag-done {
+      background: rgba(34,197,94,0.12);
+      color: var(--success);
+      border: 1px solid rgba(34,197,94,0.25);
+      border-radius: 0.25rem;
+      padding: 0.125rem 0.5rem;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .roadmap-tag-next {
+      background: rgba(99,102,241,0.12);
+      color: #a5b4fc;
+      border: 1px solid rgba(99,102,241,0.25);
+      border-radius: 0.25rem;
+      padding: 0.125rem 0.5rem;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .roadmap-tag-future {
+      background: rgba(255,255,255,0.04);
+      color: var(--text-dim);
+      border: 1px solid var(--border-soft);
+      border-radius: 0.25rem;
+      padding: 0.125rem 0.5rem;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .roadmap-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.625rem;
+    }
+    .roadmap-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .roadmap-check {
+      color: var(--success);
+      font-size: 0.875rem;
+      flex-shrink: 0;
+      margin-top: 0.0625rem;
+    }
+    .roadmap-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #a5b4fc;
+      flex-shrink: 0;
+      margin-top: 0.4375rem;
+    }
+    .roadmap-dot--dim { background: var(--text-dim); }
   </style>
 </head>
 <body>
@@ -1490,6 +1579,53 @@
       </div>
     </div>
   </div>
+</section>
+
+<hr class="divider" />
+
+<section id="roadmap">
+  <div class="section-label">Roadmap</div>
+  <h2>What comes next.</h2>
+  <p class="section-sub">v0.1.0 is the foundation. v0.2.0 ships the features that matter most.</p>
+
+  <div class="roadmap-grid">
+
+    <div class="roadmap-version">
+      <div class="roadmap-version-tag">v0.1.0 <span class="roadmap-tag-done">released</span></div>
+      <ul class="roadmap-list">
+        <li><span class="roadmap-check">&#10003;</span> Extract: screenshot to typed VASP output</li>
+        <li><span class="roadmap-check">&#10003;</span> Diff: semantic delta between two screenshots</li>
+        <li><span class="roadmap-check">&#10003;</span> MCP server: 38ms warm daemon</li>
+        <li><span class="roadmap-check">&#10003;</span> Smart paste: Cmd+V image detection</li>
+        <li><span class="roadmap-check">&#10003;</span> npm, pip, Homebrew, crates.io</li>
+        <li><span class="roadmap-check">&#10003;</span> VASP 1.0-draft open RFC</li>
+      </ul>
+    </div>
+
+    <div class="roadmap-version">
+      <div class="roadmap-version-tag">v0.2.0 <span class="roadmap-tag-next">in planning</span></div>
+      <ul class="roadmap-list">
+        <li><span class="roadmap-dot"></span> Multi-language OCR (Portuguese, Spanish, German, Japanese)</li>
+        <li><span class="roadmap-dot"></span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">farscry annotate</code> - screenshot with bounding boxes drawn</li>
+        <li><span class="roadmap-dot"></span> Windows clipboard support</li>
+        <li><span class="roadmap-dot"></span> VASP adapters: Claude computer-use, Playwright, OpenAI vision</li>
+      </ul>
+    </div>
+
+    <div class="roadmap-version">
+      <div class="roadmap-version-tag">v0.3.0 <span class="roadmap-tag-future">planned</span></div>
+      <ul class="roadmap-list">
+        <li><span class="roadmap-dot roadmap-dot--dim"></span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--text-dim)">farscry watch</code> - continuous diff on screen region changes</li>
+        <li><span class="roadmap-dot roadmap-dot--dim"></span> Loop detection in daemon via state_id history</li>
+        <li><span class="roadmap-dot roadmap-dot--dim"></span> SDK native clients (no subprocess overhead)</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <p style="margin-top:2rem;font-size:0.8125rem;color:var(--text-dim);font-family:var(--mono)">
+    Full roadmap and spike docs: <a href="https://github.com/teles-forge/farscry/blob/main/docs/projects/roadmap-v0.2.0.md" target="_blank" rel="noopener" style="color:var(--accent-high);text-decoration:none;">github.com/teles-forge/farscry/docs/projects/roadmap-v0.2.0.md</a>
+  </p>
 </section>
 
 
