@@ -112,6 +112,29 @@ import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
 
 </Steps>
 
+## Visual debugging with annotate
+
+`farscry annotate` shows you exactly what farscry sees: same screenshot with bounding boxes drawn over each detected element.
+
+```bash
+farscry annotate screenshot.png -o annotated.png
+# or from clipboard:
+farscry annotate --from-clipboard -o /tmp/out.png
+```
+
+Use this to:
+- Verify farscry is detecting elements correctly before wiring your agent
+- Debug agent failures: did farscry miss the button?
+- Share annotated screenshots with your team
+
+Add the `fannot` alias for one-command workflow:
+
+```bash
+echo "alias fannot='farscry annotate --from-clipboard -o /tmp/farscry_annotated.png && open /tmp/farscry_annotated.png'" >> ~/.zshrc && source ~/.zshrc
+```
+
+Then: screenshot -> `fannot` -> annotated image opens automatically.
+
 ## Zero-friction workflow
 
 The fastest way to use farscry. One command, every time.
