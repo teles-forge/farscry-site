@@ -53,7 +53,7 @@ Options
 
 | Flag | Default | Description |
 |---|---|---|
-| `--from-clipboard` | false | Read image from system clipboard |
+| `--from-clipboard` | false | Read image from system clipboard (macOS and Linux only) |
 | `--json` | false | Output JSON instead of VASP |
 | `-o <file>` | stdout | Write output to file |
 | `--affordances` | false | Output only interactive elements |

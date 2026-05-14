@@ -40,7 +40,7 @@ Then: Shottr screenshot -> `fannot` -> annotated image opens automatically.
 
 | Flag | Description |
 |---|---|
-| `--from-clipboard` | Read image from clipboard instead of file |
+| `--from-clipboard` | Read image from clipboard instead of file (macOS and Linux only) |
 | `-o, --output FILE` | Output path (default: `{input}_annotated.png`) |
 
 ## Use cases

@@ -115,15 +115,28 @@ farscry creates `~/.farscry/smart-paste.sh` (or `.ps1` on Windows) and prints
 the exact key binding instructions for your terminal (iTerm2, Warp, Kitty,
 Gnome Terminal, Windows Terminal).
 
-## Recommended: clipboard alias
+## Recommended: clipboard aliases
 
-After installing, add the `ffix` alias for zero-friction clipboard workflow:
+After installing, add these aliases for zero-friction workflows:
 
 ```bash
-echo "alias ffix='farscry extract --from-clipboard | claude -p \"fix this\"'" >> ~/.zshrc && source ~/.zshrc
+# ffix — pipe clipboard screenshot to your agent
+echo "alias ffix='farscry extract --from-clipboard | claude -p \"fix this\"'" >> ~/.zshrc
+
+# fp — smart paste (uses saved agent preference)
+echo "alias fp='farscry paste'" >> ~/.zshrc
+
+# fannot — annotate clipboard screenshot for visual debugging
+echo "alias fannot='farscry annotate --from-clipboard -o /tmp/farscry_annotated.png && open /tmp/farscry_annotated.png'" >> ~/.zshrc
+
+source ~/.zshrc
 ```
 
-Now: screenshot -> `ffix` -> Claude fixes it.
+| Alias | What it does |
+|---|---|
+| `ffix` | Screenshot -> extract -> pipe to Claude |
+| `fp` | Screenshot -> extract -> pipe to saved agent |
+| `fannot` | Screenshot -> annotate with bounding boxes -> open image |
 
 Security note
 

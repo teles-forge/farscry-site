@@ -3,15 +3,20 @@ title: farscry install-lang
 description: Download additional OCR language models on demand.
 ---
 
-farscry ships with English built in. Additional languages are downloaded on demand and stored in `~/.farscry/models/lang/`.
+farscry ships with English built in. Additional languages are planned for v0.2.0.
 
-Usage
+:::caution
+`farscry install-lang` is not yet implemented in v0.1.0. Running it returns an error.
+Multi-language support ships in v0.2.0. English is the only supported language in the current release.
+:::
+
+Usage (v0.2.0)
 
 ```bash
 farscry install-lang <code>
 ```
 
-Examples
+Examples (v0.2.0)
 
 ```bash
 farscry install-lang por    # Portuguese
@@ -20,7 +25,7 @@ farscry install-lang chi_sim # Chinese Simplified
 farscry install-lang jpn    # Japanese
 ```
 
-Priority languages for v0.1.0
+Priority languages for v0.2.0
 
 | Code | Language | Model size |
 |---|---|---|
