@@ -1142,7 +1142,7 @@
   <div class="hero">
     <div>
       <div class="hero-badge">
-        <span class="hero-badge-version">v0.1.0</span>
+        <span class="hero-badge-version">v0.4.0</span>
         <span class="hero-badge-sep">·</span>
         open source
       </div>
@@ -1591,7 +1591,7 @@
       </div>
       <div class="vasp-term-body">
         <span class="tl"><span class="cmd">$ farscry setup</span></span>
-        <span class="tl"><span class="d">farscry v0.1.0</span></span>
+        <span class="tl"><span class="d">farscry v0.4.0</span></span>
         <span class="tl">&nbsp;</span>
         <span class="tl"><span class="appeared">Detected: Claude Code, Cursor</span></span>
         <span class="tl">&nbsp;</span>
@@ -1617,45 +1617,49 @@
 <section id="roadmap">
   <div class="section-label">Roadmap</div>
   <h2>What comes next.</h2>
-  <p class="section-sub">v0.1.0 is the foundation. v0.2.0 ships the features that matter most.</p>
+  <p class="section-sub">v0.4.0 is the current release. v0.5.0 ships the agent-aware layer.</p>
 
   <div class="roadmap-grid">
 
     <div class="roadmap-version">
-      <div class="roadmap-version-tag">v0.1.0 <span class="roadmap-tag-done">released</span></div>
+      <div class="roadmap-version-tag">v0.4.0 <span class="roadmap-tag-done">current</span></div>
       <ul class="roadmap-list">
-        <li><span class="roadmap-check">&#10003;</span> Extract: screenshot to typed VASP output</li>
-        <li><span class="roadmap-check">&#10003;</span> Diff: semantic delta between two screenshots</li>
-        <li><span class="roadmap-check">&#10003;</span> MCP server: 38ms warm daemon</li>
-        <li><span class="roadmap-check">&#10003;</span> Smart paste: Cmd+V image detection</li>
+        <li><span class="roadmap-check">&#10003;</span> Extract, diff, annotate — full VASP pipeline</li>
+        <li><span class="roadmap-check">&#10003;</span> MCP server: 38ms warm response</li>
+        <li><span class="roadmap-check">&#10003;</span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">farscry hook</code> — zero-friction terminal recording</li>
+        <li><span class="roadmap-check">&#10003;</span> VASF sessions: <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">pack</code> + <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">timeline</code></li>
+        <li><span class="roadmap-check">&#10003;</span> Zero-copy pHash — 22MB daemon RSS (macOS)</li>
+        <li><span class="roadmap-check">&#10003;</span> Linux: Docker + X11 — 11MB VmRSS</li>
+        <li><span class="roadmap-check">&#10003;</span> Global daemon — N terminals, one process</li>
         <li><span class="roadmap-check">&#10003;</span> npm, pip, Homebrew, crates.io</li>
-        <li><span class="roadmap-check">&#10003;</span> VASP 1.0-draft open RFC</li>
       </ul>
     </div>
 
     <div class="roadmap-version">
-      <div class="roadmap-version-tag">v0.2.0 <span class="roadmap-tag-next">in planning</span></div>
+      <div class="roadmap-version-tag">v0.5.0 <span class="roadmap-tag-next">next</span></div>
       <ul class="roadmap-list">
-        <li><span class="roadmap-dot"></span> Multi-language OCR (Portuguese, Spanish, German, Japanese)</li>
-        <li><span class="roadmap-dot"></span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">farscry annotate</code> - screenshot with bounding boxes drawn</li>
-        <li><span class="roadmap-dot"></span> Windows clipboard support</li>
-        <li><span class="roadmap-dot"></span> VASP adapters: Claude computer-use, Playwright, OpenAI vision</li>
+        <li><span class="roadmap-dot"></span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">farscry augment</code> — inject silent failure warnings into agent context via MCP</li>
+        <li><span class="roadmap-dot"></span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">farscry watch</code> — real-time loop and silent failure detection</li>
+        <li><span class="roadmap-dot"></span> Semantic export: webhook, Slack, JSONL on session failure</li>
+        <li><span class="roadmap-dot"></span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">farscry watch-dir</code> — FSEvents/inotify agent screenshot directories</li>
+        <li><span class="roadmap-dot"></span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">farscry diff --json</code> — structured diff output for tooling</li>
       </ul>
     </div>
 
     <div class="roadmap-version">
-      <div class="roadmap-version-tag">v0.3.0 <span class="roadmap-tag-future">planned</span></div>
+      <div class="roadmap-version-tag">v0.6.0 <span class="roadmap-tag-future">planned</span></div>
       <ul class="roadmap-list">
-        <li><span class="roadmap-dot roadmap-dot--dim"></span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--text-dim)">farscry watch</code> - continuous diff on screen region changes</li>
-        <li><span class="roadmap-dot roadmap-dot--dim"></span> Loop detection in daemon via state_id history</li>
-        <li><span class="roadmap-dot roadmap-dot--dim"></span> SDK native clients (no subprocess overhead)</li>
+        <li><span class="roadmap-dot roadmap-dot--dim"></span> VASP adapters: native Playwright and OpenAI Vision support</li>
+        <li><span class="roadmap-dot roadmap-dot--dim"></span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--text-dim)">farscry install-lang</code> — multilingual OCR via CDN</li>
+        <li><span class="roadmap-dot roadmap-dot--dim"></span> Per-window capture when minimized (SCContentFilter)</li>
+        <li><span class="roadmap-dot roadmap-dot--dim"></span> Screen-lock awareness in <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--text-dim)">farscry serve</code></li>
       </ul>
     </div>
 
   </div>
 
   <p style="margin-top:2rem;font-size:0.8125rem;color:var(--text-dim);font-family:var(--mono)">
-    Full roadmap and spike docs: <a href="https://github.com/teles-forge/farscry/blob/main/docs/projects/roadmap-v0.2.0.md" target="_blank" rel="noopener" style="color:var(--accent-high);text-decoration:none;">github.com/teles-forge/farscry/docs/projects/roadmap-v0.2.0.md</a>
+    Changelog and full history: <a href="https://github.com/teles-forge/farscry/blob/main/CHANGELOG.md" target="_blank" rel="noopener" style="color:var(--accent-high);text-decoration:none;">github.com/teles-forge/farscry/CHANGELOG.md</a>
   </p>
 </section>
 
