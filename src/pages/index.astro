@@ -8,7 +8,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>farscry - Computer-use agents succeed 15% of the time. We measured why the other 85% fail.</title>
-  <meta name="description" content="[X]% of failed computer-use agent sessions contain silent failures: actions that returned OK but changed nothing on screen. farscry measures what benchmarks can't see." />
+  <meta name="description" content="farscry records what computer-use agents see, detects silent failures, and lets you analyze session recordings without sending a single pixel to any external service." />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -1148,20 +1148,12 @@
       </div>
       <h1>Computer-use agents succeed 15% of the time.<br /><em>We measured why the other 85% fail.</em></h1>
       <p class="hero-sub">
-        <strong>[X]% of failures contain actions that returned OK but changed nothing on screen.</strong><br />
-        The agent continued. The logs showed nothing.
+        <strong>Most agent failures are invisible.</strong> Action returns OK. Screen doesn't change. Agent continues with a broken world model.
+        <br />farscry gives every visual state a stable address and records what benchmarks can't see.
       </p>
       <div class="hero-buttons">
-        <a href="https://arxiv.org/abs/coming-soon" class="btn btn-primary">Read the paper →</a>
+        <a href="https://github.com/teles-forge/farscry" target="_blank" rel="noopener" class="btn btn-primary">View on GitHub →</a>
         <a href="https://github.com/teles-forge/farscry" target="_blank" rel="noopener" class="btn btn-outline">npm install -g farscry</a>
-      </div>
-
-      <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:0.5rem;">
-        <div style="font-family:var(--mono);font-size:0.8125rem;color:var(--text-dim);">
-          <span style="color:var(--danger);font-weight:700;">[X]%</span> silent failure rate
-          <span style="color:var(--text-dim);margin:0 0.5rem;">·</span>
-          measured across <span style="color:var(--text-muted);">[N] sessions</span>
-        </div>
       </div>
 
     </div>
