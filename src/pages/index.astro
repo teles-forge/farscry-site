@@ -1207,7 +1207,7 @@
     <div class="feature-desc">
       <div class="section-label">Coordinate Extraction</div>
       <h2>Coordinates, not captions</h2>
-      <p>Screenshot tooling returns descriptions. Workflows guess where to click, miss the target, and fail. OSWorld benchmarks show a <strong style="color:var(--text)">~88% overall task failure rate</strong> (GPT-4V baseline, <a href="https://arxiv.org/abs/2404.07972" target="_blank" rel="noopener" style="color:var(--accent-high);text-decoration:none;">arXiv:2404.07972</a> — Claude CUA: ~15% success).</p>
+      <p>Screenshot tooling returns descriptions. Workflows guess where to click, miss the target, and fail. OSWorld benchmarks show a <strong style="color:var(--text)">~88% overall task failure rate</strong> (GPT-4V baseline, <a href="https://arxiv.org/abs/2404.07972" target="_blank" rel="noopener" style="color:var(--accent-high);text-decoration:none;">arXiv:2404.07972</a>; Claude CUA: ~15% success).</p>
       <p>Agents that guess coordinates fail. Agents with exact coordinates act.</p>
       <p>farscry returns typed elements with exact pixel coordinates. The workflow knows the button is at (400,300). It clicks. It succeeds.</p>
       <p>Screenshot, error printout, Figma export, phone photo of a screen. Offline. No GPU.</p>
@@ -1624,13 +1624,13 @@
     <div class="roadmap-version">
       <div class="roadmap-version-tag">v0.4.0 <span class="roadmap-tag-done">current</span></div>
       <ul class="roadmap-list">
-        <li><span class="roadmap-check">&#10003;</span> Extract, diff, annotate — full VASP pipeline</li>
+        <li><span class="roadmap-check">&#10003;</span> Extract, diff, annotate: full VASP pipeline</li>
         <li><span class="roadmap-check">&#10003;</span> MCP server: 38ms warm response</li>
-        <li><span class="roadmap-check">&#10003;</span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">farscry hook</code> — zero-friction terminal recording</li>
+        <li><span class="roadmap-check">&#10003;</span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">farscry hook</code>: zero-friction terminal recording</li>
         <li><span class="roadmap-check">&#10003;</span> VASF sessions: <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">pack</code> + <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">timeline</code></li>
-        <li><span class="roadmap-check">&#10003;</span> Zero-copy pHash — 22MB daemon RSS (macOS)</li>
-        <li><span class="roadmap-check">&#10003;</span> Linux: Docker + X11 — 11MB VmRSS</li>
-        <li><span class="roadmap-check">&#10003;</span> Global daemon — N terminals, one process</li>
+        <li><span class="roadmap-check">&#10003;</span> Zero-copy pHash, 22MB daemon RSS (macOS)</li>
+        <li><span class="roadmap-check">&#10003;</span> Linux: Docker + X11, 11MB VmRSS</li>
+        <li><span class="roadmap-check">&#10003;</span> Global daemon: N terminals, one process</li>
         <li><span class="roadmap-check">&#10003;</span> npm, pip, Homebrew, crates.io</li>
       </ul>
     </div>
@@ -1638,11 +1638,11 @@
     <div class="roadmap-version">
       <div class="roadmap-version-tag">v0.5.0 <span class="roadmap-tag-next">next</span></div>
       <ul class="roadmap-list">
-        <li><span class="roadmap-dot"></span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">farscry augment</code> — inject silent failure warnings into agent context via MCP</li>
-        <li><span class="roadmap-dot"></span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">farscry watch</code> — real-time loop and silent failure detection</li>
+        <li><span class="roadmap-dot"></span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">farscry augment</code>: inject silent failure warnings into agent context via MCP</li>
+        <li><span class="roadmap-dot"></span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">farscry watch</code>: real-time loop and silent failure detection</li>
         <li><span class="roadmap-dot"></span> Semantic export: webhook, Slack, JSONL on session failure</li>
-        <li><span class="roadmap-dot"></span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">farscry watch-dir</code> — FSEvents/inotify agent screenshot directories</li>
-        <li><span class="roadmap-dot"></span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">farscry diff --json</code> — structured diff output for tooling</li>
+        <li><span class="roadmap-dot"></span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">farscry watch-dir</code>: FSEvents/inotify agent screenshot directories</li>
+        <li><span class="roadmap-dot"></span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">farscry diff --json</code>: structured diff output for tooling</li>
       </ul>
     </div>
 
@@ -1650,7 +1650,7 @@
       <div class="roadmap-version-tag">v0.6.0 <span class="roadmap-tag-future">planned</span></div>
       <ul class="roadmap-list">
         <li><span class="roadmap-dot roadmap-dot--dim"></span> VASP adapters: native Playwright and OpenAI Vision support</li>
-        <li><span class="roadmap-dot roadmap-dot--dim"></span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--text-dim)">farscry install-lang</code> — multilingual OCR via CDN</li>
+        <li><span class="roadmap-dot roadmap-dot--dim"></span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--text-dim)">farscry install-lang</code>: multilingual OCR via CDN</li>
         <li><span class="roadmap-dot roadmap-dot--dim"></span> Per-window capture when minimized (SCContentFilter)</li>
         <li><span class="roadmap-dot roadmap-dot--dim"></span> Screen-lock awareness in <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--text-dim)">farscry serve</code></li>
       </ul>

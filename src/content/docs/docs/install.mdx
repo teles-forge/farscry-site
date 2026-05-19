@@ -120,13 +120,13 @@ Gnome Terminal, Windows Terminal).
 After installing, add these aliases for zero-friction workflows:
 
 ```bash
-# ffix — pipe clipboard screenshot to your agent
+# ffix: pipe clipboard screenshot to your agent
 echo "alias ffix='farscry extract --from-clipboard | claude -p \"fix this\"'" >> ~/.zshrc
 
-# fp — smart paste (uses saved agent preference)
+# fp: smart paste (uses saved agent preference)
 echo "alias fp='farscry paste'" >> ~/.zshrc
 
-# fannot — annotate clipboard screenshot for visual debugging
+# fannot: annotate clipboard screenshot for visual debugging
 echo "alias fannot='farscry annotate --from-clipboard -o /tmp/farscry_annotated.png && open /tmp/farscry_annotated.png'" >> ~/.zshrc
 
 source ~/.zshrc
