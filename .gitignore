@@ -11,6 +11,17 @@ pnpm-debug.log*
 
 
 .env
+.env.local
+.env.*.local
 .env.production
 
 .DS_Store
+
+# aider AI assistant
+.aider*
+
+# private keys
+*.pem
+*.key
+*.p12
+*.pfx
