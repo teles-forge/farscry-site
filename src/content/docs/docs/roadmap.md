@@ -27,34 +27,44 @@ The recording and observability layer. Everything below is shipped and in the cu
 
 ---
 
-## v0.5.0: Next
+## v0.5.0: Current release
 
-The agent-aware layer. farscry stops being a recorder and becomes an active observer.
+The agent-aware layer. farscry now detects silent failures inline and tells the agent immediately.
 
-### `farscry augment`
+### `farscry augment`: shipped
 
-Injects silent failure warnings directly into agent context via MCP, zero code changes to the agent.
+Silent failure detection inline in every MCP response. Zero code changes to the agent. Zero retraining.
 
-If the previous action had no visual effect (StateId before == StateId after), the next `farscry_extract` call returns a structured warning alongside the VASP output. The agent knows it may be in a broken state before taking another action.
+```
+1. farscry_mark_action()      ← register state before action
+2. computer_use_action(...)   ← click, type, keypress
+3. farscry_extract(screenshot)
 
-### `farscry watch session.vasf --detect`
-
-Real-time silent failure and visual loop detection on a live or replayed session.
-
-```bash
-farscry watch session.vasf --detect
-# streams structured events as patterns are detected
+Response when action had no effect:
+  ⚠ SILENT_FAILURE DETECTED
+    action had no visual effect
+    state_id_before: phash:8f4a2c9d
+    state_id_after:  phash:8f4a2c9d
+    recommendation: try a different approach
 ```
 
-### Semantic export
+### `farscry_mark_action` MCP tool: shipped
 
-Webhook, Slack, and JSONL log delivery on session failure events. Structured text only, no pixels sent.
+Explicit action marker. Call before any computer-use action to register the current state.
 
-### `farscry watch-dir <path>`
+### `farscry analyze`: shipped
 
-File-system watch (FSEvents on macOS, inotify on Linux) for agent screenshot directories. Emits VASP output as new screenshots appear. No polling required.
+Measure AER (Action Effect Rate) and VLR (Visual Loop Rate) across session recordings.
 
-### `farscry diff --json`
+```bash
+farscry analyze sessions/*.vasf --failed sessions/failed/*.vasf
+```
+
+### `farscry mark-action` CLI: shipped
+
+Write an action marker to the active MCP session from the terminal. Used automatically by `farscry hook`.
+
+### `farscry diff --json`: shipped
 
 Structured JSON diff output for tooling integration.
 

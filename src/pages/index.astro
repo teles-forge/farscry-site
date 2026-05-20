@@ -1142,14 +1142,14 @@
   <div class="hero">
     <div>
       <div class="hero-badge">
-        <span class="hero-badge-version">v0.4.0</span>
+        <span class="hero-badge-version">v0.5.0</span>
         <span class="hero-badge-sep">·</span>
         open source
       </div>
-      <h1>Computer-use agents succeed 15% of the time.<br /><em>We measured why the other 85% fail.</em></h1>
+      <h1>Computer-use agents fail silently.<br /><em>farscry tells them when it happens.</em></h1>
       <p class="hero-sub">
-        <strong>Most agent failures are invisible.</strong> Action returns OK. Screen doesn't change. Agent continues with a broken world model.
-        <br />farscry gives every visual state a stable address and records what benchmarks can't see.
+        Agent clicks a button. Tool returns <code style="font-family:var(--mono);font-size:0.875em;color:var(--accent-high)">{"success": true}</code>. Screen doesn't change. Agent has no idea.
+        <br /><strong>farscry augment</strong> detects this inline and tells the agent immediately, zero model changes, zero retraining, three lines of MCP config.
       </p>
       <div class="hero-buttons">
         <a href="https://github.com/teles-forge/farscry" target="_blank" rel="noopener" class="btn btn-primary">View on GitHub →</a>
@@ -1358,6 +1358,73 @@
       </div>
       <span class="diff-track-price">$0</span>
     </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+
+<section id="augment">
+  <div class="section-label">Silent Failure Detection</div>
+  <h2>Agents now know when their actions fail.</h2>
+  <p class="section-sub">farscry augment compares visual state before and after every action. When nothing changed, it tells the agent inline, before it wastes more steps.</p>
+
+  <div class="loop-compare">
+    <div class="loop-box loop-box--bad">
+      <div class="loop-title loop-title--bad">Without farscry augment</div>
+      <div class="loop-steps">
+        <div class="loop-item"><span class="loop-item-icon">1</span>Agent calls <code style="font-family:var(--mono);font-size:0.8125rem">click(450, 320)</code></div>
+        <div class="loop-item-connector"></div>
+        <div class="loop-item"><span class="loop-item-icon">2</span>Tool returns <code style="font-family:var(--mono);font-size:0.8125rem">{"success": true}</code></div>
+        <div class="loop-item-connector"></div>
+        <div class="loop-item"><span class="loop-item-icon" style="color:var(--danger)">✗</span><span style="color:var(--danger)">Screen didn't change. Agent has no idea.</span></div>
+        <div class="loop-item-connector"></div>
+        <div class="loop-item"><span class="loop-item-icon">…</span>8 more steps on the same broken state</div>
+      </div>
+      <div class="loop-cost loop-cost-bad">~12,000 tokens wasted per loop</div>
+    </div>
+
+    <div class="loop-box loop-box--good">
+      <div class="loop-title loop-title--good">With farscry augment</div>
+      <div class="loop-steps">
+        <div class="loop-item"><span class="loop-item-icon">1</span><code style="font-family:var(--mono);font-size:0.8125rem">farscry_mark_action()</code></div>
+        <div class="loop-item-connector"></div>
+        <div class="loop-item"><span class="loop-item-icon">2</span>Agent calls <code style="font-family:var(--mono);font-size:0.8125rem">click(450, 320)</code></div>
+        <div class="loop-item-connector"></div>
+        <div class="loop-item"><span class="loop-item-icon">3</span><code style="font-family:var(--mono);font-size:0.8125rem">farscry_extract(screenshot)</code></div>
+        <div class="loop-item-connector"></div>
+        <div class="loop-item"><span class="loop-item-icon" style="color:var(--success)">✓</span><span style="color:var(--success)">Agent receives inline warning. Pivots immediately.</span></div>
+      </div>
+      <div class="loop-cost loop-cost-good">detected at step 3 · zero extra tokens</div>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem">
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+        <span class="terminal-title">farscry_extract response when action had no effect</span>
+      </div>
+      <div class="vasp-term-body">
+        <span class="tl"><span class="sec">=== farscry visual context ===</span></span>
+        <span class="tl"><span class="k">state_id:</span> <span class="d">phash:8f4a2c9d1e3b7f6a</span></span>
+        <span class="tl"><span class="d">---</span></span>
+        <span class="tl">&nbsp;</span>
+        <span class="tl"><span class="pos">[middle-right]</span>  <span class="k">button</span>  <span class="s">"Save Changes"</span>  <span class="appeared">enabled:true</span></span>
+        <span class="tl">&nbsp;</span>
+        <span class="tl"><span class="sec">⚠ SILENT_FAILURE DETECTED</span></span>
+        <span class="tl">  <span class="removed">action had no visual effect</span></span>
+        <span class="tl">  <span class="k">state_id_before:</span> <span class="d">phash:8f4a2c9d1e3b7f6a</span></span>
+        <span class="tl">  <span class="k">state_id_after: </span> <span class="d">phash:8f4a2c9d1e3b7f6a</span></span>
+        <span class="tl">  <span class="changed">recommendation:</span> <span class="d">try a different approach</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:1.5rem;padding:1rem 1.5rem;background:rgba(99,102,241,0.06);border:1px solid rgba(99,102,241,0.2);border-radius:0.5rem;font-family:var(--mono);font-size:0.8125rem;line-height:1.8;color:var(--text-muted);">
+    <span style="color:var(--accent-high);font-weight:600">Three lines to enable farscry augment</span><br/>
+    <span class="d">// add to your MCP config, works with Claude Code, Cursor, any MCP client</span><br/>
+    <span class="s">"farscry"</span><span class="d">: {</span> <span class="k">"command"</span><span class="d">:</span> <span class="s">"farscry"</span><span class="d">,</span> <span class="k">"args"</span><span class="d">:</span> <span class="s">["serve", "--mcp"]</span> <span class="d">}</span>
   </div>
 </section>
 
@@ -1609,7 +1676,7 @@
 <section id="roadmap">
   <div class="section-label">Roadmap</div>
   <h2>What comes next.</h2>
-  <p class="section-sub">v0.4.0 is the current release. v0.5.0 ships the agent-aware layer.</p>
+  <p class="section-sub">v0.5.0 ships farscry augment: silent failure detection inline in every MCP response.</p>
 
   <div class="roadmap-grid">
 
@@ -1628,13 +1695,14 @@
     </div>
 
     <div class="roadmap-version">
-      <div class="roadmap-version-tag">v0.5.0 <span class="roadmap-tag-next">next</span></div>
+      <div class="roadmap-version-tag">v0.5.0 <span class="roadmap-tag-next">current</span></div>
       <ul class="roadmap-list">
-        <li><span class="roadmap-dot"></span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">farscry augment</code>: inject silent failure warnings into agent context via MCP</li>
-        <li><span class="roadmap-dot"></span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">farscry watch</code>: real-time loop and silent failure detection</li>
-        <li><span class="roadmap-dot"></span> Semantic export: webhook, Slack, JSONL on session failure</li>
-        <li><span class="roadmap-dot"></span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">farscry watch-dir</code>: FSEvents/inotify agent screenshot directories</li>
-        <li><span class="roadmap-dot"></span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">farscry diff --json</code>: structured diff output for tooling</li>
+        <li><span class="roadmap-check">&#10003;</span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">farscry augment</code>: inline silent failure detection in MCP responses</li>
+        <li><span class="roadmap-check">&#10003;</span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">farscry_mark_action</code>: explicit action marker MCP tool</li>
+        <li><span class="roadmap-check">&#10003;</span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">farscry analyze</code>: AER and VLR metrics across sessions</li>
+        <li><span class="roadmap-check">&#10003;</span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">farscry mark-action</code>: CLI action marker for terminal hook</li>
+        <li><span class="roadmap-check">&#10003;</span> Headless Linux: Xvfb auto-start, works on any server</li>
+        <li><span class="roadmap-check">&#10003;</span> <code style="font-family:var(--mono);font-size:0.8125rem;color:var(--accent-high)">farscry diff --json</code>: structured diff output for tooling</li>
       </ul>
     </div>
 
